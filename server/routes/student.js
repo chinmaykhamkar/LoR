@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const getStudent = require('../controllers/student');
 
-router.get('/',(req,res)=>{
-    res.send('route is working');
-});
+    router.get('/',getStudent);
 
-module.exports = router;
+module.exports = router; 
