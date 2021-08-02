@@ -20,10 +20,9 @@ const teacherSchema = mongoose.Schema({
     code:{
         type:Number,
     },
-    students:{
-        status:{type:Boolean},
-        name:{name:String}
-    }
+    students:[{
+        status:Boolean,
+        name:String}]
     
 });
 

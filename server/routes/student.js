@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const getStudent = require('../controllers/student');
+const studentController = require('../controllers/student');
 
-    router.get('/login',getStudent);
-    router.get('/signup',getStudent);
-    router.get('/home',getStudent);
-    router.get('/teachers',getStudent);
-    router.get('/university',getStudent);
-    router.get('/profile',getStudent);
+    router.get('/login',studentController);
+    router.get('/signup',studentController);
+    router.get('/home',studentController);
+    router.get('/teachers',studentController);
+    router.get('/university',studentController);
+    router.get('/profile',studentController);
 
 
 module.exports = router; 

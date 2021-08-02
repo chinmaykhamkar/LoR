@@ -20,11 +20,12 @@ const studentSchema = mongoose.Schema({
     lorLink:{
         type:String,
     },
-    university:{
-        status:{type:Boolean},
-        name:{type:String},
-        shortform:{type:String,maLength:4}
-    }
+    university:[{status:Boolean,
+        name:String,
+        shortForm:{type:String,maxlength:4}
+    }]
+        
+    
 });
 
 const student = mongoose.model('student',studentSchema);
