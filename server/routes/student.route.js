@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const studentController = require('../controllers/student');
+const studentController = require('../controllers/student.controller');
 
-    router.get('/login',studentController);
-    router.get('/signup',studentController);
+    router.post('/login',studentController);
+    router.post('/signup',studentController);
     router.get('/home',studentController);
     router.get('/teachers',studentController);
     router.get('/university',studentController);
