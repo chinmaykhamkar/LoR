@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const studentRoute = require('./routes/student.route');
 const teacherRoute = require('./routes/teacher.route');
+const studentAuthRoute = require('./routes/auth/auth.students.route');
+const teacherAuthRoute = require('./routes/auth/auth.teacher.route');
 require('dotenv').config();
 
 const app = express();
@@ -25,3 +27,5 @@ mongoose.set('useFindAndModify',false);
 //routes 
 app.use('/student',studentRoute);
 app.use('/teacher',teacherRoute);
+app.use('/student/auth',studentAuthRoute);
+app.use('teacher/auth',teacherAuthRoute);
