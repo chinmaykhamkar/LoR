@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-const dd = {};
+const db = {};
 db.mongoose = mongoose;
 db.student = require('./students.models');
 db.teacher = require('./teachers.models');
