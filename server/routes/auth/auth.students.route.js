@@ -15,7 +15,7 @@ module.exports = function (router) {
     router.post(
         "/signup",
         [
-            verifySignUp.checkDuplicateUsernameOrEmail,
+            verifySignUp.checkDuplicateUsernameOrEmailStudent,
         ],
         controller.signup
     );

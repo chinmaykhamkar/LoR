@@ -15,11 +15,11 @@ module.exports = function (router) {
     router.post(
         "/signup",
         [
-            verifySignUp.checkDuplicateUsernameOrEmail,
+            verifySignUp.checkDuplicateUsernameOrEmailTeacher,
         ],
         controller.signup
-    )
+    );
+    router.post("/signin", controller.signin);
+    router.post("/refreshtoken", controller.refreshToken)
 };
 
-router.post("/signin",controller.signin);
-router.post("/refreshtoken",controller.refreshToken)

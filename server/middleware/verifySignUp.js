@@ -1,10 +1,12 @@
 const db = require('../models');
-const Student = db.student;
-const Teacher = db.Teacher;
+const ROLES = db.ROLES;
+const User = db.user;
+// const Student = db.student;
+// const Teacher = db.Teacher;
 //student
-checkDuplicateUsernameOrEmailStudent = (req,res,next) => {
+checkDuplicateUsernameOrEmail = (req,res,next) => {
     //username
-    Student.findOne({
+    User.findOne({
         username = req.body.username
     }).exce((err,user) => {
         if(err){
@@ -17,7 +19,7 @@ checkDuplicateUsernameOrEmailStudent = (req,res,next) => {
         }
         //email
 
-        Student.findOne({
+        User.findOne({
             email:req.body.email
         }).exce((err,user) => {
             if(err){
@@ -34,42 +36,23 @@ checkDuplicateUsernameOrEmailStudent = (req,res,next) => {
 
 };
 
-
-//teacher
-checkDuplicateUsernameOrEmailTeacher = (req,res,next) => {
-    //username
-    Teacher.findOne({
-        username = req.body.username
-    }).exce((err,user) => {
-        if(err){
-            res.status(500).send({message:err});
-            return;
-        }
-        if(user){
-            res.status(400).send({message:"Falied! Username already in use"});
-            return;
-        }
-        //email
-
-        Teacher.findOne({
-            email:req.body.email
-        }).exce((err,user) => {
-            if(err){
-                res.status(500).send({message:err});
+checkRolesExisted = (req,res,next) => {
+    if(req.body.roles){
+        for(let i=0;i<req.body.roles.length;i++){
+            if(!ROLES.includes(req.body.roles[i])){
+                res.status(400).send({
+                    message:`Failed! Role ${req.body.roles[i]} does not exist!`
+                });
                 return;
             }
-            if(user){
-                res.status(400).send({message:"Failed! Email already in use!"});
-                return;
-            }
-            next();
-        });
-    });
-
+        }
+    }
+    next();
 };
+
 
 const verifySignUp = {
-    checkDuplicateUsernameOrEmailStudent,
-    checkDuplicateUsernameOrEmailTeacher
+    checkDuplicateUsernameOrEmail,
+    checkRolesExisted
 };
 module.exports = verifySignUp;
