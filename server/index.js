@@ -7,6 +7,7 @@ const studentRoute = require('./routes/student/student.route');
 const studentAuthRoute = require('./routes/student/auth.route');
 const teacherRoute = require('./routes/teacher/teacher.route');
 const teacherAuthRoute = require('./routes/teacher/auth.route');
+const errorHandler = require('./middleware/error');
 require('dotenv').config();
 
 
@@ -33,4 +34,10 @@ app.use('/student/auth',studentAuthRoute);
 app.use('/teacher',teacherRoute);
 app.use('/teacher/auth',teacherAuthRoute);
 
+// error handling 
+app.use(errorHandler);
 
+process.on("unhandledRejection", (err, promise) => {
+    console.log(`Logged Error: ${err.message}`);
+    server.close(() => process.exit(1));
+  });
