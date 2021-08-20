@@ -1,7 +1,14 @@
 const express = require('express');
 const { route, post } = require('./auth.route');
 const router = express.Router();
-
+const {homeController,
+requestController,
+studentUniListController,
+profileController,
+studentUniListController,
+updateProfileController,
+updateStudentUniListController
+} = require('../../controllers/teacher/teacher.controller');
 //page routes
 router.route('/home').get(protect,homeController);
 router.route('/request').get(protect,requestController);
