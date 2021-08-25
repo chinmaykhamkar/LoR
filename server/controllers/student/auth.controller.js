@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 const ErrorResposne = require("../../utils/errorResponse");
-const Student = require("../../models/student");
+const Student = require("../../models/student/Student");
 
 
 //login controller
