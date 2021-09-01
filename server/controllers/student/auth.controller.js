@@ -53,7 +53,7 @@ exports.forgotPassword = async (req, res, next) => {
 
         const resetToken = student.getResetPasswordToken();
         await student.save();
-        const resetUrl = `http://localhost:5000/passwordreset/${resetToken}`;
+        const resetUrl = `http://localhost:5000/student/auth/passwordreset/${resetToken}`;
         // HTML Message
         const message = `
         <h1>You have requested a password reset</h1>
@@ -95,7 +95,7 @@ exports.resetPassword = async (req, res, next) => {
     try {
         const student = await Student.findOne({
             resetPasswordToken,
-            resetPasswordExpire: { $gt: Date.now()},
+            resetPasswordExpire: { $gt: Date.now()}
         });
 
         if (!student) {
