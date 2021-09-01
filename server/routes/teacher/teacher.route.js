@@ -1,14 +1,14 @@
 const express = require('express');
-const { route, post } = require('./auth.route');
 const router = express.Router();
 const {homeController,
 requestController,
-studentUniListController,
+studentsController,
 profileController,
 studentUniListController,
-updateProfileController,
-updateStudentUniListController
+// updateProfileController,
+// updateStudentUniListController
 } = require('../../controllers/teacher/teacher.controller');
+const {protect} = require("../../middleware/student/student.auth");
 //page routes
 router.route('/home').get(protect,homeController);
 router.route('/request').get(protect,requestController);
@@ -17,5 +17,6 @@ router.route('/profile').get(protect,profileController);
 router.route('/student:id/uniList').get(protect,studentUniListController);
 
 //curd operations
-router.route('/updateProfile').post(protect,updateProfileController);
-route.apply.route('/student:id/uniListUpdate').post(protect,updateStudentUniListController);
+// router.route('/updateProfile').post(protect,updateProfileController);
+// router.route('/student:id/uniListUpdate').post(protect,updateStudentUniListController);
+module.exports = router
