@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-const ErrorResposne = require("../../utils/errorResponse");
+const ErrorResponse = require("../../utils/errorResponse");
 const Teacher = require("../../models/teacher/Teacher");
 
 
@@ -7,17 +7,17 @@ const Teacher = require("../../models/teacher/Teacher");
 exports.login = async (req, res, next) => {
     const { email, password } = req.body;
     if (!email || !password) {
-        return next(new ErrorResposne("Please provide email and password", 400));
+        return next(new ErrorResponse("Please provide email and password", 400));
     }
     try {
         const teacher = await Teacher.findOne({ email }).select("+password");
         if (!teacher) {
-            return next(new ErrorResposne("Invalid credentials", 401));
+            return next(new ErrorResponse("Invalid credentials", 401));
         }
 
         const isMatch = await teacher.matchPassword(password);
         if (!isMatch) {
-            return next(new ErrorResposne("Invalid password", 401));
+            return next(new ErrorResponse("Invalid password", 401));
         }
 
         sendToken(teacher, 200, res);
@@ -44,12 +44,12 @@ exports.register = async (req, res, next) => {
 
 //forget password controller
 
-exports.forgotPassword = (req, res, next) => {
-    const { emai } = req.body;
+exports.forgotPassword = async (req, res, next) => {
+    const { email } = req.body;
     try {
         const teacher = await Teacher.findOne({ email });
         if (!teacher) {
-            return next(new ErrorResposne("No Email could be sent", 404));
+            return next(new ErrorResponse("No Email could be sent", 404));
         }
 
         const resetToken = teacher.getResetPasswordToken();

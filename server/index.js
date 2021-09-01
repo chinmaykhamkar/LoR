@@ -3,9 +3,9 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const studentRoute = require('./routes/student/student.route');
+// const studentRoute = require('./routes/student/student.route');
 const studentAuthRoute = require('./routes/student/auth.route');
-const teacherRoute = require('./routes/teacher/teacher.route');
+// const teacherRoute = require('./routes/teacher/teacher.route');
 const teacherAuthRoute = require('./routes/teacher/auth.route');
 const errorHandler = require('./middleware/error');
 require('dotenv').config();
@@ -27,11 +27,11 @@ mongoose.connect(CONNECTION_URL, {
 mongoose.set('useFindAndModify', false);
 
 //student routes
-app.use('/student',studentRoute);
+// app.use('/student',studentRoute);
 app.use('/student/auth',studentAuthRoute);
 
 //teacher routes
-app.use('/teacher',teacherRoute);
+// app.use('/teacher',teacherRoute);
 app.use('/teacher/auth',teacherAuthRoute);
 
 // error handling 

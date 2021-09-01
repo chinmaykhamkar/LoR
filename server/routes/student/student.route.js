@@ -1,5 +1,4 @@
 const express = require('express');
-const { route, post } = require('./auth.route');
 const router = express.Router();
 const {
     homeController,

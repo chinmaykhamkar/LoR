@@ -1,22 +1,22 @@
 const crypto = require('crypto');
-const ErrorResposne = require("../../utils/errorResponse");
+const ErrorResponse = require("../../utils/errorResponse");
 const Student = require("../../models/student/Student");
-
+const sendEmail = require("../../utils/sendEmail.js")
 //login controller
 exports.login = async (req, res, next) => {
     const { email, password } = req.body;
     if (!email || !password) {
-        return next(new ErrorResposne("Please provide email and password", 400));
+        return next(new ErrorResponse("Please provide email and password", 400));
     }
     try {
         const student = await Student.findOne({ email }).select("+password");
         if (!student) {
-            return next(new ErrorResposne("Invalid credentials", 401));
+            return next(new ErrorResponse("Invalid credentials", 401));
         }
 
         const isMatch = await student.matchPassword(password);
         if (!isMatch) {
-            return next(new ErrorResposne("Invalid password", 401));
+            return next(new ErrorResponse("Invalid password", 401));
         }
 
         sendToken(student, 200, res);
@@ -43,17 +43,17 @@ exports.register = async (req, res, next) => {
 
 //forget password controller
 
-exports.forgotPassword = (req, res, next) => {
-    const { emai } = req.body;
+exports.forgotPassword = async (req, res, next) => {
+    const { email } = req.body;
     try {
         const student = await Student.findOne({ email });
         if (!student) {
-            return next(new ErrorResposne("No Email could be sent", 404));
+            return next(new ErrorResponse("No Email could be sent", 404));
         }
 
         const resetToken = student.getResetPasswordToken();
         await student.save();
-        const resetUrl = `http://localhost:8000/passwordreset/${resetToken}`;
+        const resetUrl = `http://localhost:5000/passwordreset/${resetToken}`;
         // HTML Message
         const message = `
         <h1>You have requested a password reset</h1>
@@ -95,7 +95,7 @@ exports.resetPassword = async (req, res, next) => {
     try {
         const student = await Student.findOne({
             resetPasswordToken,
-            resetPasswordExpire: { $gt: Date.now() },
+            resetPasswordExpire: { $gt: Date.now()},
         });
 
         if (!student) {

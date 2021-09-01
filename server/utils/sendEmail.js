@@ -25,4 +25,4 @@ const sendEmail = (options) => {
     });
 };
 
-module.exports = sendMail;
+module.exports = sendEmail;
