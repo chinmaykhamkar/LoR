@@ -33,7 +33,8 @@ const TeacherSchema = new mongoose.Schema({
     },    
     students: [{
         status: Boolean,
-        email: String
+        email: String,
+        name:String
     }],
     resetPasswordToken: String,
     resetPasswordExpire: Date,

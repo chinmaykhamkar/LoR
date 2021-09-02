@@ -1,4 +1,6 @@
 import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// common route/page
+import MainScreen from './components/mainScreen';
 //students 
 //routes
 import HomeRoute from './components/student/routing/HomeRoute';
@@ -41,6 +43,8 @@ const App = () => {
     <Router>
       <div className="app">
         <Switch>
+          {/* main screen  */}
+          <Route exact path="/" component={MainScreen} />
           {/* students */}
           <HomeRoute exact path="/student/home" component={HomeScreen} />
           <ProfileRoute exact path="/student/profile" component={ProfileScreen} />
@@ -52,14 +56,16 @@ const App = () => {
           <Route exact path="/student/passwordreset/:resetToken" component={ResetPasswordScreen}/>
 
           {/* teachers */}
-          <HomeRoutet exact path="/teacher/home" component={HomeRoutet}/>
+          <HomeRoutet exact path="/teacher/home" component={HomeScreent}/>
           <ProfileRoutet exact path="/teacher/profile" component={ProfileScreent}/>
           <RequestRoutet exact path="/teacher/request" component={RequestScreent}/>
           <StudentsRoutet exact path="/teacher/students" component={StudentsScreent}/>
           <StudentUniListRoutet exact path="/teacher/studentunilist" component={StudentsUniListScreent}/>
-
-
-
+          <Route exact path="/teacher/login"  component={LoginScreent}/>
+          <Route exact path="/teacher/register"  component={RegisterScreent}/>
+          <Route exact path="/teacher/forgotpassword"  component={ForgotPasswordScreent}/>
+          <Route exact path="/teacher/passwordreset/:resetToken"  component={ResetPasswordScreent}/>
+   
         </Switch>
       </div>
     </Router>
