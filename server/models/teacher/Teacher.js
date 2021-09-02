@@ -25,17 +25,15 @@ const TeacherSchema = new mongoose.Schema({
     },
     collegeName: {
         type: String,
+        default:''        
     },
     userType: {
         type: String,
-        default: 'techer'
-    },
-    code: {
-        type: Number,
-    },
+        default: 'teacher'
+    },    
     students: [{
         status: Boolean,
-        name: String
+        email: String
     }],
     resetPasswordToken: String,
     resetPasswordExpire: Date,

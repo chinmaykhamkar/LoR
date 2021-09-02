@@ -14,7 +14,7 @@ const {protect} = require("../../middleware/student/student.auth");
 router.route('/home').get(protect,homeController);
 router.route('/teachers').get(protect,teachersController);
 router.route('/university').get(protect,universityController);
-router.route('/profile').get(protect,profileController);
+router.route('/profile').get(protect,profileController); 
 
 //curd operations
 // router.route('/addUniversity').post(protect,addUniversityController);
