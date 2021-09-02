@@ -1,0 +1,68 @@
+.main{
+    display: flex; 
+    flex-direction: column; 
+    background-color: green;
+    height: 100%;
+    width: 100%;
+}
+/* navbar  */
+.navbar{
+    display: flex;
+    width: 100%;
+    height: 10%;
+    background-color: #1976D2;
+}
+.logo{
+    display: flex;
+    width: 10%;
+    /* background-color: red; */
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.name{
+    display: flex;
+    width: 80%;
+    /* background-color: green; */
+    justify-content: center;
+    align-items: center;
+    font-size:xx-large;
+    font-weight: bold;
+    color: white;
+}
+
+.mainDiv{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    background-color: red;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+.mainText{
+    display: flex;
+    height: 25%;
+    width: 100%;
+    background-color: goldenrod;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: xx-large;
+}
+.cardArea{
+    display: flex;
+    height: 50%;
+    width: 100%;
+    background-color: aqua;
+}
+.card{
+    display: flex;   
+    background-color: antiquewhite;
+    height: 80%;
+    width: 45%;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    margin-top: 5%;
+}

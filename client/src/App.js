@@ -37,6 +37,7 @@ import ResetPasswordScreent from './components/teacher/screens/js/ResetPasswordS
 import StudentsScreent from './components/teacher/screens/js/StudentsScreen';
 import StudentsUniListScreent from './components/teacher/screens/js/StudentUniListScreen';
 
+import './index.css';
 
 const App = () => {
   return (
