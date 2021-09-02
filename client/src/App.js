@@ -1,14 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
+//routes
 
-function App() {
+//screens
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Lor Manager</h1>
-      </header>
+    <div>
+      
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
