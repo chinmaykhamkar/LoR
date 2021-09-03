@@ -2,9 +2,8 @@ import React from 'react';
 import './mainScreen.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUniversity } from '@fortawesome/free-solid-svg-icons';
-
-
-const mainScreen = () => {
+import MainCard from './common/mainCard';
+const MainScreen = () => {
     return (
         <React.Fragment>
            <div className="main">               
@@ -23,15 +22,17 @@ const mainScreen = () => {
                 </div>
                 <div className="cardArea">
                     <div className="card">
-                        
+                        <MainCard link="/student/login" type="Student" />
+                                                
                     </div>
                     <div className="card">
-                        
+                        <MainCard link="/teacher/login" type="Teacher" />
+                                           
                     </div>
                 </div>
             </div>
             </div> 
-
+            
 
 
         </React.Fragment>
@@ -39,4 +40,4 @@ const mainScreen = () => {
     )
 }
 
-export default mainScreen
+export default MainScreen

@@ -1,0 +1,14 @@
+.cardLogo{
+    display: flex;
+    /* background-color: blue; */
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+}
+.cardBtn{
+    display: flex;
+    /* background-color: palevioletred; */
+    height: 20%;
+    justify-content: center;
+    align-items: flex-start;
+}
