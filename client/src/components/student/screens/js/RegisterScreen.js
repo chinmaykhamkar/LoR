@@ -80,8 +80,18 @@ const RegisterScreen = () => {
                 name="password"
                 label="Password"
                 type="password"
-                id="password"
-                autoComplete="current-password"
+                id="password"                
+              />
+            </Grid> 
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Confirm Password"
+                type="password"
+                id="confirmpassword"                
               />
             </Grid>            
           </Grid>
@@ -96,7 +106,7 @@ const RegisterScreen = () => {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/student/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
