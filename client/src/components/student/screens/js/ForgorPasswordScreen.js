@@ -15,13 +15,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import PublicNav from '../../../common/publicNav';
 import '../../../common/common.css'
-
+var color = localStorage.getItem('studentColor');
 const useStyles = makeStyles((theme) => ({
     paper: {
       marginTop: theme.spacing(8),
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      
     },
     avatar: {
       margin: theme.spacing(1),
@@ -33,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
     submit: {
       margin: theme.spacing(3, 0, 2),
+      backgroundColor:color,      
     },
   }));
 
@@ -41,7 +43,7 @@ const ForgorPasswordScreen = () => {
     return (
       
       <div className="main">
-        <div className="navbar">
+        <div style={{backgroundColor:color}} className="navbar">
           <PublicNav />
         </div>
         <div className="mainDiv">
@@ -73,8 +75,8 @@ const ForgorPasswordScreen = () => {
           <Button
             type="submit"
             fullWidth
-            variant="contained"
-            color="primary"
+            variant="contained" 
+            color="primary"           
             className={classes.submit}
           >
             Send Email

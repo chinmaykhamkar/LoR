@@ -16,7 +16,7 @@ import Container from '@material-ui/core/Container';
 import PublicNav from '../../../common/publicNav';
 import '../../../common/common.css'
 
-
+var color = localStorage.getItem('studentColor');
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -34,13 +34,14 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor:color,      
   },
 }));
 const LoginScreen = () => {
   const classes = useStyles();
   return (
     <div className="main">
-      <div className="navbar">
+      <div style={{backgroundColor:color}} className="navbar">
         <PublicNav />
       </div>
       <div className="mainDiv">
@@ -87,12 +88,12 @@ const LoginScreen = () => {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="/student/forgotpassword" variant="body2">
+                  <Link style={{color:color}} href="/student/forgotpassword" variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="/student/register" variant="body2">
+                  <Link style={{color:color}} href="/student/register" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

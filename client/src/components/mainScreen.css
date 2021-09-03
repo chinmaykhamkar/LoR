@@ -40,9 +40,10 @@
   /* background-color: aqua; */
 }
 .card {
+  color: #F5F5F5;
   display: flex;
   flex-direction: column;
-  background-color: #F5F5F5;
+  /* background-color: #F5F5F5; */
   height: 80%;
   width: 45%;
   margin-left: 2.5rem;

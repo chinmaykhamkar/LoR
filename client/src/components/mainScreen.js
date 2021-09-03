@@ -3,6 +3,12 @@ import './mainScreen.css';
 import MainCard from './common/mainCard';
 import PublicNav from './common/publicNav';
 const MainScreen = () => {
+
+    localStorage.setItem('studentColor','#DA2426');
+    localStorage.setItem('teacherColor','#31A34A');
+    var scolor = localStorage.getItem('studentColor');
+    var tcolor = localStorage.getItem('teacherColor');
+
     return (
         <React.Fragment>
            <div className="main">               
@@ -16,11 +22,11 @@ const MainScreen = () => {
                 </div>
                 <div className="cardArea">
                     <div className="card">
-                        <MainCard link="/student/login" type="Student" />
+                        <MainCard link="/student/login" type="Student" color={scolor}/>
                                                 
                     </div>
                     <div className="card">
-                        <MainCard link="/teacher/login" type="Teacher" />
+                        <MainCard link="/teacher/login" type="Teacher" color={tcolor} />
                                            
                     </div>
                 </div>

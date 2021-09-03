@@ -16,7 +16,7 @@ import Container from '@material-ui/core/Container';
 import PublicNav from '../../../common/publicNav';
 import '../../../common/common.css'
 
-
+var color=localStorage.getItem('teacherColor');
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -34,15 +34,17 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor:color, 
   },
 }));
 
 const ForgorPasswordScreent = () => {
+ 
   const classes = useStyles();
   return (
 
     <div className="main">
-      <div className="navbar">
+      <div style={{backgroundColor:color}} className="navbar">
         <PublicNav />
       </div>
       <div className="mainDiv">

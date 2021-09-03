@@ -1,14 +1,16 @@
 .cardLogo{
     display: flex;
-    /* background-color: blue; */
+    /* background-color:#ffbe0b; */
     height: 80%;
     justify-content: center;
     align-items: center;
+    border-radius: 5px 5px 0 0;
 }
 .cardBtn{
     display: flex;
-    /* background-color: palevioletred; */
+    /* background-color: #ffbe0b; */
     height: 20%;
     justify-content: center;
     align-items: flex-start;
+    border-radius: 0 0 5px 5px;
 }

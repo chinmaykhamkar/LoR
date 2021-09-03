@@ -8,11 +8,11 @@ const MainCard = (props) => {
     console.log(props.icon);
     return (
         <React.Fragment>
-            <div className="cardLogo">
+            <div style={{backgroundColor:props.color}} className="cardLogo">
                 <FontAwesomeIcon icon={(props.type) == 'Student'? faUserGraduate:faChalkboardTeacher} size={"9x"} />
             </div>
-            <div className="cardBtn">
-                <Button component={Link} to={props.link} variant="contained" color="primary" >{props.type}</Button>
+            <div style={{backgroundColor:props.color}}   className="cardBtn">
+                <Button style={{backgroundColor:"#F5F5F5",color:props.color,fontWeight:"bold"}} component={Link} to={props.link} variant="contained" color="primary" >{props.type}</Button>
             </div>
         </React.Fragment>
         
