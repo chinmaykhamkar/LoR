@@ -1,0 +1,24 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+  }
+  /* navbar  */
+  .navbar {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    background-color: #1976d2;
+  }
+  .mainDiv {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    /* background-color: red; */
+    justify-content: flex-start;
+    align-items: center;
+    align-self: center;
+  }

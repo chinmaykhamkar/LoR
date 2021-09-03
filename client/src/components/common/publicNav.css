@@ -1,0 +1,19 @@
+.logo {
+    display: flex;
+    width: 10%;
+    /* background-color: red; */
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+  .name {
+    display: flex;
+    width: 80%;
+    /* background-color: green; */
+    justify-content: center;
+    align-items: center;
+    font-size: xx-large;
+    font-weight: bold;
+    color: white;
+  }
+  

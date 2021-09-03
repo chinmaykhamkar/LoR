@@ -13,6 +13,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import PublicNav from '../../../common/publicNav';
+import '../../../common/common.css'
 
 
 
@@ -38,6 +40,12 @@ const useStyles = makeStyles((theme) => ({
 const RegisterScreen = () => {
     const classes = useStyles();
     return (
+
+      <div className="main">
+        <div className="navbar">
+            <PublicNav />
+        </div>
+        <div className="mainDiv">
         <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -116,6 +124,9 @@ const RegisterScreen = () => {
       <Box mt={5}>
       </Box>
     </Container>
+        </div>
+      </div>
+       
     )
 }
 
