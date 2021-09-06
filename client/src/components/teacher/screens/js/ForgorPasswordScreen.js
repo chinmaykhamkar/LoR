@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -14,9 +14,10 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import PublicNav from '../../../common/publicNav';
+import swal from 'sweetalert';
 import '../../../common/common.css'
 
-var color=localStorage.getItem('teacherColor');
+var color = localStorage.getItem('teacherColor');
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -34,17 +35,58 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor:color, 
+    backgroundColor: color,
   },
 }));
 
-const ForgorPasswordScreent = () => {
- 
+const ForgorPasswordScreent = ({ history }) => {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  useEffect(() => {
+    if (localStorage.getItem("authTokent")) {
+      history.push("/teacher/home");
+    }
+  }, [history]);
+
+  const forgotPasswordHandler = async (e) => {
+    e.preventDefault();
+
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const { data } = await axios.post(
+        "http://localhost:5000/teacher/auth/forgotpassword",
+        { email },
+        config
+      );
+
+      setSuccess(data.data);
+    } catch (error) {
+      setError(error.response.data.error);
+      setEmail("");
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+    }
+  };
+
+  const showError = (e) => {
+    swal("Oops", e, "error");
+  }
+  const showSuccess = (s) => {
+    swal(s, "", "success");
+  }
   const classes = useStyles();
   return (
 
     <div className="main">
-      <div style={{backgroundColor:color}} className="navbar">
+      <div style={{ backgroundColor: color }} className="navbar">
         <PublicNav />
       </div>
       <div className="mainDiv">
@@ -59,10 +101,13 @@ const ForgorPasswordScreent = () => {
             </Typography>
             <br />
             <Typography component="h5" variant="caption">
-            Enter your registered email address below and we'll send you a link to reset your password
+              Enter your registered email address below and we'll send you a link to reset your password
             </Typography>
-            <form className={classes.form} noValidate>
+            <form onSubmit={forgotPasswordHandler} className={classes.form} noValidate>
+              {error && showError(error)}
+              {success && showSuccess(success)}
               <TextField
+                type="email"
                 variant="outlined"
                 margin="normal"
                 required
@@ -72,6 +117,8 @@ const ForgorPasswordScreent = () => {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <Button
                 type="submit"

@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 const ErrorResponse = require("../../utils/errorResponse");
 const Teacher = require("../../models/teacher/Teacher");
-
+const sendEmail = require("../../utils/sendEmail")
 
 //login controller
 exports.login = async (req, res, next) => {
