@@ -47,7 +47,7 @@ const LoginScreent = ({history}) => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (localStorage.getItem("authToken")) {
+    if (localStorage.getItem("authTokent")) {
       history.push("/teacher/home");
     }
   }, [history]);
@@ -66,7 +66,7 @@ const LoginScreent = ({history}) => {
         { email, password },
         config
       );
-      localStorage.setItem("authToken", data.token);
+      localStorage.setItem("authTokent", data.token);
       history.push("/teacher/home");
     } catch (error) {
       setError(error.response.data.error);

@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -47,6 +47,12 @@ const RegisterScreen = ({ history }) => {
   const [confirmpassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    if (localStorage.getItem("authToken")) {
+      history.push("/student/home");
+    }
+  }, [history]);
+
   const registerHandler = async (e) => {
     e.preventDefault();
 
@@ -90,7 +96,7 @@ const RegisterScreen = ({ history }) => {
   }
 
   const showError = (e) => {
-    swal("Oops",e,"error");
+    swal("Oops", e, "error");
   }
 
 

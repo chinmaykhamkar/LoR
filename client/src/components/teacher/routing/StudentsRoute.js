@@ -5,7 +5,7 @@ const StudentsRoutet = ({component:Component, ...rest}) => {
         <Route
             {...rest}
             render={(props) => 
-                localStorage.getItem("authToken")?(
+                localStorage.getItem("authTokent")?(
                     <Component {...props} />
                 ):(
                     <Redirect to="/teacher/login" />

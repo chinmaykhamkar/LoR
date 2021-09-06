@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -39,13 +39,19 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: color,
   },
 }));
-const RegisterScreent = ({history}) => {
+const RegisterScreent = ({ history }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    if (localStorage.getItem("authTokent")) {
+      history.push("/teacher/home");
+    }
+  }, [history]);
+  
   const registerHandler = async (e) => {
     e.preventDefault();
 
@@ -77,7 +83,7 @@ const RegisterScreent = ({history}) => {
         config
       );
 
-      localStorage.setItem("authToken", data.token);
+      localStorage.setItem("authTokent", data.token);
       history.push('/teacher/home');
     } catch (error) {
       setError(error.response.data.error);
