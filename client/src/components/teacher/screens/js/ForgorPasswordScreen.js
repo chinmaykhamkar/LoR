@@ -59,7 +59,7 @@ const ForgorPasswordScreent = () => {
             </Typography>
             <br />
             <Typography component="h5" variant="caption">
-              Please enter your registered email. We will send you password reset confirmation on this email.
+            Enter your registered email address below and we'll send you a link to reset your password
             </Typography>
             <form className={classes.form} noValidate>
               <TextField
