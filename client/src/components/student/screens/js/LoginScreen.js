@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import PublicNav from '../../../common/publicNav';
+import swal from 'sweetalert';
 import '../../../common/common.css'
 
 var color = localStorage.getItem('studentColor');
@@ -34,14 +35,53 @@ const useStyles = makeStyles((theme) => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    backgroundColor:color,      
+    backgroundColor: color,
   },
 }));
-const LoginScreen = () => {
+const LoginScreen = ({ history }) => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (localStorage.getItem("authToken")) {
+      history.push("/student/home");
+    }
+  }, [history]);
+
+  const loginHandler = async (e) => {
+    e.preventDefault();
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    try {
+      const { data } = await axios.post(
+        "http://localhost:5000/student/auth/login",
+        { email, password },
+        config
+      );
+      localStorage.setItem("authToken", data.token);
+      history.push("/student/home");
+    } catch (error) {
+      setError(error.response.data.error);
+      setTimeout(() => {
+        setError("");
+      }, 5000);
+    }
+  }
+
+  const showError = (e) => {
+    swal("Oops", e, "error");
+  }
+
   const classes = useStyles();
   return (
     <div className="main">
-      <div style={{backgroundColor:color}} className="navbar">
+      <div style={{ backgroundColor: color }} className="navbar">
         <PublicNav />
       </div>
       <div className="mainDiv">
@@ -54,8 +94,10 @@ const LoginScreen = () => {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <form className={classes.form} noValidate>
+            <form onSubmit={loginHandler} className={classes.form} noValidate>
+              {error && showError(error)}
               <TextField
+                type="email"
                 variant="outlined"
                 margin="normal"
                 required
@@ -65,6 +107,8 @@ const LoginScreen = () => {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 variant="outlined"
@@ -76,6 +120,8 @@ const LoginScreen = () => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <Button
                 type="submit"
@@ -88,12 +134,12 @@ const LoginScreen = () => {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link style={{color:color}} href="/student/forgotpassword" variant="body2">
+                  <Link style={{ color: color }} href="/student/forgotpassword" variant="body2">
                     Forgot password?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link style={{color:color}} href="/student/register" variant="body2">
+                  <Link style={{ color: color }} href="/student/register" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
@@ -106,5 +152,9 @@ const LoginScreen = () => {
 
   )
 }
+
+
+
+
 
 export default LoginScreen;
