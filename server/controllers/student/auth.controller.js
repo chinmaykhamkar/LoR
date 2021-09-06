@@ -53,7 +53,7 @@ exports.forgotPassword = async (req, res, next) => {
 
         const resetToken = student.getResetPasswordToken();
         await student.save();
-        const resetUrl = `http://localhost:5000/student/auth/passwordreset/${resetToken}`;
+        const resetUrl = `http://localhost:3000/student/passwordreset/${resetToken}`;
         // HTML Message
         const message = `
         <h1>You have requested a password reset</h1>
