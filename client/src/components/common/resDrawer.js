@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect, Route, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
@@ -21,6 +22,12 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faChalkboardTeacher, faUniversity, faUserCircle, faQuestionCircle, faSignOutAlt, faHandHoldingUsd, faInbox } from '@fortawesome/free-solid-svg-icons';
 import './resDrawer.css'
+import HomeComp from '../student/screens/js/HomeComp';
+import TeacherComp from '../student/screens/js/TeacherComp';
+import UniversityComp from '../student/screens/js/UniversityComp';
+import ProfileComp from '../student/screens/js/ProfileComp'
+import LoginScreen from '../student/screens/js/LoginScreen';
+
 const drawerWidth = 240;
 var color = localStorage.getItem('studentColor');
 const useStyles = makeStyles((theme) => ({
@@ -51,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    
+
   },
   content: {
     flexGrow: 1,
@@ -64,6 +71,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ResponsiveDrawer = (props) => {
+  const history = useHistory();
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -74,8 +82,11 @@ const ResponsiveDrawer = (props) => {
   };
 
   const logoutHandler = () => {
-    console.log(localStorage.getItem('authToken'))
-  } 
+    const token = localStorage.getItem('authToken');
+    localStorage.removeItem('authToken');
+    history.push('/student/login');
+    
+  }
 
   const drawer = (
     <div>
@@ -150,7 +161,7 @@ const ResponsiveDrawer = (props) => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar style={{backgroundColor:color}} position="fixed" className={classes.appBar}>
+      <AppBar style={{ backgroundColor: color }} position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -199,29 +210,11 @@ const ResponsiveDrawer = (props) => {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-          facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-          gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-          adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-          Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-          imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-          donec massa sapien faucibus et molestie ac.
-        </Typography>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-          facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-          tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-          consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-          vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-          hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-          tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-          nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-          accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        {props.name == 'Home' && <HomeComp />}
+        {props.name == 'Teachers' && <TeacherComp />}
+        {props.name == 'University' && <UniversityComp />}
+        {props.name == 'Profile' && <ProfileComp />}
+
       </main>
     </div>
   );
