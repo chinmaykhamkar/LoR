@@ -1,9 +1,10 @@
 import {React, useState} from 'react'
 import axios from 'axios'
+import ResponsiveDrawer from '../../../common/resDrawer';
 const HomeScreen = () => {
     return (
         <div>
-            this is home 
+            <ResponsiveDrawer name="Home" />
         </div>
     )
 }

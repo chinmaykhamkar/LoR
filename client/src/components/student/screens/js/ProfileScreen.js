@@ -1,9 +1,11 @@
 import {React, useState} from 'react'
 import axios from 'axios'
+import ResponsiveDrawer from '../../../common/resDrawer';
+
 const ProfileScreen = () => {
     return (
         <div>
-            this is profile 
+            <ResponsiveDrawer name="Profile" />
         </div>
     )
 }

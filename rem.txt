@@ -1,0 +1,19 @@
+student
+home page
+profile page
+uni page
+teacher page
+
+
+
+
+
+
+
+
+teacher
+home
+profile
+students
+students/uni
+request
