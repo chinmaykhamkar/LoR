@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
@@ -37,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
-      backgroundColor: color,
+      // backgroundColor: color
     },
   },
   menuButton: {
@@ -50,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+    
   },
   content: {
     flexGrow: 1,
@@ -71,61 +73,73 @@ const ResponsiveDrawer = (props) => {
     setMobileOpen(!mobileOpen);
   };
 
+  const logoutHandler = () => {
+    console.log(localStorage.getItem('authToken'))
+  } 
+
   const drawer = (
     <div>
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItem className={(props.name) == 'Home'? classes.active:""} button>
-          <ListItemIcon>
-            <FontAwesomeIcon icon={faHome} size={"2x"} />
-          </ListItemIcon>
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem className={(props.name) == 'Teachers'? classes.active:""} button>
-          <ListItemIcon>
-            <FontAwesomeIcon icon={faChalkboardTeacher} size={"2x"} />
-          </ListItemIcon>
-          <ListItemText primary="Teachers" />
-        </ListItem>
-        <ListItem className={(props.name) == 'University'? classes.active:""} button>
-          <ListItemIcon>
-            <FontAwesomeIcon icon={faUniversity} size={"2x"} />
-          </ListItemIcon>
-          <ListItemText primary="University" />
-        </ListItem>
-        <ListItem className={(props.name) == 'Profile'? classes.active:""} button>
-          <ListItemIcon>
-            <FontAwesomeIcon icon={faUserCircle} size={"2x"} />
-          </ListItemIcon>
-          <ListItemText primary="Profile" />
-        </ListItem>
+        <Link href='/student/home' style={{ color: 'black' }}>
+          <ListItem className={(props.name) == 'Home' ? classes.active : ""} button>
+            <ListItemIcon>
+              <FontAwesomeIcon icon={faHome} size={"2x"} />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+        </Link>
+        <Link href='/student/teachers' style={{ color: 'black' }}>
+          <ListItem className={(props.name) == 'Teachers' ? classes.active : ""} button>
+            <ListItemIcon>
+              <FontAwesomeIcon icon={faChalkboardTeacher} size={"2x"} />
+            </ListItemIcon>
+            <ListItemText primary="Teachers" />
+          </ListItem>
+        </Link>
+        <Link href='/student/university' style={{ color: 'black' }}>
+          <ListItem className={(props.name) == 'University' ? classes.active : ""} button>
+            <ListItemIcon>
+              <FontAwesomeIcon icon={faUniversity} size={"2x"} />
+            </ListItemIcon>
+            <ListItemText primary="University" />
+          </ListItem>
+        </Link>
+        <Link href='/student/profile' style={{ color: 'black' }}>
+          <ListItem className={(props.name) == 'Profile' ? classes.active : ""} button>
+            <ListItemIcon>
+              <FontAwesomeIcon icon={faUserCircle} size={"2x"} />
+            </ListItemIcon>
+            <ListItemText primary="Profile" />
+          </ListItem>
+        </Link>
       </List>
       <Divider />
       <List>
-      <ListItem className={(props.name) == 'Instructions'? classes.active:""} button>
+        <ListItem className={(props.name) == 'Instructions' ? classes.active : ""} button>
           <ListItemIcon>
             <FontAwesomeIcon icon={faQuestionCircle} size={"2x"} />
           </ListItemIcon>
           <ListItemText primary="Instructions" />
         </ListItem>
-        <ListItem className={(props.name) == 'Contact us'? classes.active:""} button>
+        <ListItem className={(props.name) == 'Contact us' ? classes.active : ""} button>
           <ListItemIcon>
             <FontAwesomeIcon icon={faInbox} size={"2x"} />
           </ListItemIcon>
           <ListItemText primary="Contact us" />
         </ListItem>
-        <ListItem className={(props.name) == 'Support us'? classes.active:""} button>
+        <ListItem className={(props.name) == 'Support us' ? classes.active : ""} button>
           <ListItemIcon>
             <FontAwesomeIcon icon={faHandHoldingUsd} size={"2x"} />
           </ListItemIcon>
           <ListItemText primary="Support us" />
         </ListItem>
-        <ListItem className={(props.name) == 'Logout'? classes.active:""} button>
+        <ListItem className={(props.name) == 'Logout' ? classes.active : ""} button>
           <ListItemIcon>
             <FontAwesomeIcon icon={faSignOutAlt} size={"2x"} />
           </ListItemIcon>
-          <ListItemText primary="Logout" />
+          <ListItemText primary="Logout" onClick={logoutHandler} />
         </ListItem>
       </List>
     </div>
@@ -136,7 +150,7 @@ const ResponsiveDrawer = (props) => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar style={{backgroundColor:color}} position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             color="inherit"
