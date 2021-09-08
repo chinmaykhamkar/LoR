@@ -65,6 +65,7 @@ const LoginScreen = ({ history }) => {
         config
       );
       localStorage.setItem("authToken", data.token);
+      localStorage.setItem("email",email);
       history.push("/student/home");
     } catch (error) {
       setError(error.response.data.error);

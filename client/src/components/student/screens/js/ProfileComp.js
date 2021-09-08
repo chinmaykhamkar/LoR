@@ -6,112 +6,174 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import axios from 'axios'
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 import '../css/ProfileComp.css'
+import 'react-notifications/lib/Notification'
+var storeData;
+var config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
+};
 const ProfileComp = () => {
-    const [info, getInfo] = useState([]);
+    // const [data, setData] = useState([]);
     const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [university, setUniversity] = useState("");
+    const [email, setEmail] = useState(localStorage.getItem('email'));
+    const [college, setCollege] = useState("");
     const [lor, setLor] = useState("");
     const [copied, setCopied] = useState("");
     const [open, setOpen] = useState(false);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        getData();
+
+    }, []);
+
+    const getData = async () => {        
+
+        try {
+            const allData = await axios.get(`http://localhost:5000/student/profile/${email}`, config);
+            storeData = allData.data.data;
+            // setData(storeData);
+            setUsername(storeData[0].username);
+            setCollege(storeData[0].collegeName);
+            setLor(storeData[0].lorLink);
+            console.log(storeData);
+            setLoading(false);
+
+        } catch (err) {
+            console.log(err);
+        }     
+
+    }
 
     const handleClickOpen = () => {
         setOpen(true);
     };
 
+    const handleSave = async(e) => {
+        e.preventDefault();
+
+        try{
+            const updateData = await axios.post(
+                `http://localhost:5000/student/updateProfile/${email}`,
+                {username,college,lor},
+                config
+            );
+            storeData = updateData.data.data;
+            console.log(storeData);
+            setOpen(false);
+            NotificationManager.success('Profile updated','',2000);
+
+        } catch(error){
+            console.log(error);
+        }
+    };
+
     const handleClose = () => {
+        setUsername(storeData[0].username);
+        setCollege(storeData[0].collegeName);
+        setLor(storeData[0].lorLink);
         setOpen(false);
+        NotificationManager.success('Error','Please try again',2000);
+
     };
 
 
-
+    if (loading) {
+        return (
+            <div className='profileMain'>
+                <CircularProgress />
+            </div>
+        )
+    }
 
     return (
         <div className='profileMain'>
+            <NotificationContainer/>
             <div className='profileCard'>
                 <div className='profileDiv'>
                     <div className='profileTitle'>
                         <div className='profileKey'>User Name</div>
-                        <div className='profileVal'>Chinmay Khamkar</div>
+                        <div className='profileVal'>{username}</div>
                     </div>
                     <div className='profileTitle'>
                         <div className='profileKey'>Email</div>
-                        <div className='profileVal'>khamkarchinmay4@gmail.com</div>
+                        <div className='profileVal'>{email}</div>
                     </div>
                     <div className='profileTitle'>
-                        <div className='profileKey'>College Name</div>
-                        <div className='profileVal'>DJ Sanghvi</div>
+                        <div className='profileKey'>College Name</div>{
+                            college ? (
+                                <div className='profileVal'>{college}</div>
+                            ) : <div className='profileVal'>None</div>
+                        }
                     </div>
                     <div className='profileTitle'>
                         <div className='profileKey'>LoR link</div>
                         <div className='profileVal'>
-                            <Button style={{ backgroundColor: 'white' }} variant="outlined" color="primary" onClick={() => {
-                                navigator.clipboard.writeText('lor link');
+                            <Button variant="contained" color="primary" onClick={() => {
+                                navigator.clipboard.writeText(`${lor}`);
                                 setCopied('Copied');
                                 setTimeout(() => {
                                     setCopied('');
                                 }, 2000);
                             }}>copy to clipboard</Button>
-                            {copied}
+                           <div style={{display:'flex',alignItems:'center',marginLeft:5,fontSize:'small',fontWeight:400}}>{copied}</div> 
                         </div>
                     </div>
                 </div>
             </div>
             <div className='profileEdit'>
                 <div>
-                    <Button style={{backgroundColor:'white'}} variant="outlined" color="primary" onClick={handleClickOpen}>
+                    <Button variant="contained" color="primary" onClick={handleClickOpen}>
                         Edit
                     </Button>
                     <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-                        <DialogContent>
-                            <DialogContentText>
-                                .
-                            </DialogContentText>
+                        <DialogTitle id="form-dialog-title">Edit</DialogTitle>
+                        <DialogContent style={{ width: '30rem' }}>
+
+
                             <TextField
                                 autoFocus
                                 margin="dense"
                                 id="name"
                                 label="User Name"
                                 type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                                 fullWidth
                             />
                             <br />
                             <TextField
                                 autoFocus
                                 margin="dense"
-                                id="name"
-                                label="Email Address"
-                                type="email"
-                                fullWidth
-                            />
-                            <br />
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="name"
-                                label="University"
+                                id="college"
+                                label="College"
                                 type="text"
                                 fullWidth
+                                value={college}
+                                onChange={(e) => setCollege(e.target.value)}
                             />
                             <br />
                             <TextField
                                 autoFocus
                                 margin="dense"
-                                id="name"
+                                id="lor"
                                 label="Lor Link"
                                 type="text"
                                 fullWidth
+                                value={lor}
+                                onChange={(e) => setLor(e.target.value)}
                             />
                             <br />
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={handleClose} color="primary">
-                                Cancel
+                            <Button variant="contained" type="submit" onClick={handleClose} color="secondary">
+                                Close
                             </Button>
-                            <Button onClick={handleClose} color="primary">
-                                Subscribe
+                            <Button variant="contained" type="submit" onClick={handleSave} color="primary">
+                                Save
                             </Button>
                         </DialogActions>
                     </Dialog>
