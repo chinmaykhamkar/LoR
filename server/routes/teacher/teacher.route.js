@@ -6,6 +6,7 @@ studentsController,
 profileController,
 studentUniListController,
 updateProfileController,
+addStudentController
 // updateStudentUniListController
 } = require('../../controllers/teacher/teacher.controller');
 const {protect} = require("../../middleware/teacher/teacher.auth");
@@ -18,5 +19,6 @@ router.route('/student/:email/uniList').get(protect,studentUniListController);
 
 //curd operations
 router.route('/updateProfile/:email').post(protect,updateProfileController);
+router.route('addStudent/:email').post(addStudentController);
 // router.route('/student:id/uniListUpdate').post(protect,updateStudentUniListController);
 module.exports = router
