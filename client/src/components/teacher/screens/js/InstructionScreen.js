@@ -1,13 +1,12 @@
 import {React, useState} from 'react'
 import axios from 'axios'
 import ResponsiveDrawer from '../../../common/TeacherDrawer';
-
-const HomeScreent = () => {
+const InstructionScreent = () => {
     return (
         <div>
-            <ResponsiveDrawer name="Home" />
+            <ResponsiveDrawer name="Instruction" />
         </div>
     )
 }
 
-export default HomeScreent;
+export default InstructionScreent

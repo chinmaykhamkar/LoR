@@ -1,9 +1,12 @@
-import {React, useState} from 'react'
+import { React, useState } from 'react'
 import axios from 'axios'
+import ResponsiveDrawer from '../../../common/TeacherDrawer';
+
 const ProfileScreent = () => {
     return (
         <div>
-            this is teacher profile 
+            <ResponsiveDrawer name="Profile" />
+
         </div>
     )
 }

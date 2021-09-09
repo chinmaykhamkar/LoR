@@ -21,12 +21,13 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faChalkboardTeacher, faUniversity, faUserCircle, faQuestionCircle, faSignOutAlt, faHandHoldingUsd, faInbox } from '@fortawesome/free-solid-svg-icons';
-import './resDrawer.css'
+import './StudentDrawer.css'
 import HomeComp from '../student/screens/js/HomeComp';
 import TeacherComp from '../student/screens/js/TeacherComp';
 import UniversityComp from '../student/screens/js/UniversityComp';
 import ProfileComp from '../student/screens/js/ProfileComp'
-import LoginScreen from '../student/screens/js/LoginScreen';
+import InstrcutionComp from '../student/screens/js/InstructionComp'
+
 
 const drawerWidth = 240;
 var color = localStorage.getItem('studentColor');
@@ -130,12 +131,14 @@ const ResponsiveDrawer = (props) => {
       </List>
       <Divider />
       <List>
-        <ListItem className={(props.name) == 'Instructions' ? classes.active : ""} button>
+        <Link href='/student/instruction' style={{color:'black'}}>
+        <ListItem className={(props.name) == 'Instruction' ? classes.active : ""} button>
           <ListItemIcon>
             <FontAwesomeIcon icon={faQuestionCircle} size={"2x"} />
           </ListItemIcon>
           <ListItemText primary="Instructions" />
         </ListItem>
+        </Link>
         <ListItem className={(props.name) == 'Contact us' ? classes.active : ""} button>
           <ListItemIcon>
             <FontAwesomeIcon icon={faInbox} size={"2x"} />
@@ -216,6 +219,7 @@ const ResponsiveDrawer = (props) => {
         {props.name == 'Teachers' && <TeacherComp />}
         {props.name == 'University' && <UniversityComp />}
         {props.name == 'Profile' && <ProfileComp />}
+        {props.name == 'Instruction' && <InstrcutionComp />}
 
       </main>
     </div>

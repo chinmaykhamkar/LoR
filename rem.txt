@@ -1,8 +1,9 @@
 student
 home page
-profile page
+profile page ----------- done
 uni page
-teacher page
+teacher page --- doing
+how to -----------------done
 
 
 
@@ -13,7 +14,9 @@ teacher page
 
 teacher
 home
-profile
+profile --------------- done
 students
 students/uni
 request
+how to ----------------done
+

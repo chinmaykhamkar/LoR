@@ -1,0 +1,29 @@
+.mainDivIns{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    border: solid 3px  #FFBCBC;
+    border-radius: 10px;
+    padding: 1.5rem;
+
+
+}
+.mainTitleIns{
+    /* background-color: antiquewhite; */
+    display: flex;
+    width: 90%;
+    height: 30%;
+    align-items: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+.mainContentIns{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 70%;
+    /* background-color: aqua; */
+    margin-top: 10px;
+}

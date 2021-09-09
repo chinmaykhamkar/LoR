@@ -84,6 +84,7 @@ const RegisterScreent = ({ history }) => {
       );
 
       localStorage.setItem("authTokent", data.token);
+      localStorage.setItem("email",email);
       history.push('/teacher/home');
     } catch (error) {
       setError(error.response.data.error);
