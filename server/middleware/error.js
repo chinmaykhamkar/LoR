@@ -5,7 +5,7 @@ const errorHandler = (err, req, res, next) => {
     error.message = err.message;
 
     if (err.code === 11000) {
-        const message = `User already exsists`;
+        const message = `User exsists already`;
         error = new ErrorResponse(message, 400);
     }
 

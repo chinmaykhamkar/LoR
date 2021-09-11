@@ -1,6 +1,6 @@
 const ErrorResponse = require("../../utils/errorResponse");
 const Teacher = require("../../models/teacher/Teacher");
-
+const { Error } = require("mongoose");
 exports.homeController = async (req, res, next) => {
     res.status(200).json({
         sucess: true,

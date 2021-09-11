@@ -27,8 +27,10 @@ exports.login = async (req, res, next) => {
 };
 
 //signup controller
-exports.register = async (req, res, next) => {
-    const { username, email, password } = req.body;
+exports.register = async (req, res, next) => {    
+    const username = req.body.username;
+    const email = req.body.email;
+    const password = req.body.password;
     try {
         const teacher = await Teacher.create({
             username,
