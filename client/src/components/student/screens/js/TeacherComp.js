@@ -1,8 +1,9 @@
-import React from 'react'
+import { React, useState, useEffect } from 'react'
 import '../css/TeacherComp.css'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -12,8 +13,26 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
+// var config = {
+//     headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
+// };
 const TeacherComp = () => {
     const classes = useStyles();
+    const [email,setEmail] = useState("");
+    const sname = localStorage.getItem('sname');
+    const semail = localStorage.getItem('email');
+    const handleAddTeacher = async(e) => {
+        e.preventDefault();
+        try{
+            const addTeacher = axios.post(`http://localhost:5000/teacher/addStudent/${email}`,
+            {semail,sname}
+            );
+            console.log(addTeacher.data);
+        } catch(error){
+            console.log(error);
+        }
+    }
+
     return (
         <div className="mainDivTeach">
             <div className="mainTop">
@@ -26,12 +45,15 @@ const TeacherComp = () => {
                             id="outlined-basic"
                             label="Enter Email"
                             variant="outlined"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
 
                         />
                     </form>
                 </div>
                 <div className="topBtn">
-                    <Button variant="contained" color="primary">
+                    <Button onclick={handleAddTeacher} variant="contained" color="primary">
                         Add Teacher
                     </Button>
                 </div>
@@ -56,7 +78,7 @@ const TeacherComp = () => {
                         </div>
                         <div className="accTeacher">
                             Teacher 2
-                        </div>                        
+                        </div>
 
                     </div>
                 </div>

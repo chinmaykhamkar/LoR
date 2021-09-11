@@ -63,7 +63,7 @@ exports.studentUniListController = async (req, res, next) => {
 exports.addStudentController = async (req,res,next) => {
     Teacher.findOneAndUpdate({"email":req.params.email})
     .then(teacher => {
-        const obj = {"status":false,"email":req.body.email,"name":req.body.name};
+        const obj = {"status":false,"email":req.body.semail,"name":req.body.sname};
         teacher.students = [obj];
         teacher.save()
         .then(teacher => res.status(200).json({
