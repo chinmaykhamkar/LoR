@@ -5,6 +5,7 @@ const {
     teachersController,
     universityController,
     profileController,
+    teacherListController,
     // addUniversityController,
     addTeacherController,
     updateProfileController
@@ -16,6 +17,7 @@ router.route('/home').get(protect,homeController);
 router.route('/teachers').get(protect,teachersController);
 router.route('/university').get(protect,universityController);
 router.route('/profile/:email').get(protect,profileController); 
+router.route('/getTeacherList:email').get(protect,teacherListController);
 
 //curd operations
 // router.route('/addUniversity').post(protect,addUniversityController);

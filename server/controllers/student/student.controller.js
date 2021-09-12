@@ -55,7 +55,7 @@ exports.updateProfileController = async (req, res, next) => {
 
 
 exports.addTeacherController = async (req, res, next) => {
-    Teacher.findOne({ "email": req.body.temail })
+    Teacher.findOne({ "email": req.body.email })
         .then(teacher => {
             const tobj = { "semail": req.body.semail, "name": req.body.name, "status": false };
             // teacher.students = [tobj];
@@ -89,7 +89,14 @@ exports.addTeacherController = async (req, res, next) => {
 }
 
 
-
+exports.teacherListController = async (req,res,next) => {
+    Student.findOne({"email":req.params.email})
+        .then(student => res.status(200).json({
+            sucess:true,
+            data:student.data.data
+        }))
+        .catch(err => res.status(400).json('Error '+err));
+}
 
 
 
