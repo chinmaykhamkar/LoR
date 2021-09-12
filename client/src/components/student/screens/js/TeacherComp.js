@@ -4,7 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-
+var config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
+};
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
@@ -13,22 +15,34 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
-// var config = {
-//     headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
-// };
+var config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
+};
 const TeacherComp = () => {
     const classes = useStyles();
-    const [email,setEmail] = useState("");
-    const sname = localStorage.getItem('sname');
+    const [email, setEmail] = useState("");
+    const name = localStorage.getItem('sname');
     const semail = localStorage.getItem('email');
-    const handleAddTeacher = async(e) => {
+    const handleAddTeacher = async (e) => {
         e.preventDefault();
-        try{
-            const addTeacher = axios.post(`http://localhost:5000/teacher/addStudent/${email}`,
-            {semail,sname}
+        console.log('clicked');
+        if (!name) {
+            var name;
+            try {
+                const d = await axios.get(`http://localhost:5000/student/profile/${email}`, config);
+                name = d.data.data.username;
+                console.log(name);
+            }catch(err){
+                console.log('inside error '+err);
+            }
+        }
+        try {
+            const addTeacher = axios.post('http://localhost:5000/student/addTeacher',
+                { semail, email, name },
+                config
             );
             console.log(addTeacher.data);
-        } catch(error){
+        } catch (error) {
             console.log(error);
         }
     }
@@ -53,7 +67,7 @@ const TeacherComp = () => {
                     </form>
                 </div>
                 <div className="topBtn">
-                    <Button onclick={handleAddTeacher} variant="contained" color="primary">
+                    <Button onClick={handleAddTeacher} variant="contained" color="primary">
                         Add Teacher
                     </Button>
                 </div>

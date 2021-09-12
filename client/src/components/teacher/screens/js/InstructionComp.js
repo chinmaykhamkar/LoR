@@ -14,10 +14,10 @@ const InstructionComp = () => {
                     2. Share your Email ID which you used here ( preferably use your college Email ) among the stdents getting a LoR from you.
                 </Typography>
                 <Typography>
-                    3. Accept requests from legit students from the <Link href='/teacher/request' style={{ color: '#DA2426' }}>Request</Link> page.
+                    3. Accept requests from legit students from the <Link href='/teacher/request' style={{ color: '#31A34A' }}>Request</Link> page.
                 </Typography>
                 <Typography>
-                    4. Accepted students will appear in the  <Link href='/teacher/student' style={{ color: '#DA2426' }}>Students</Link> page.
+                    4. Accepted students will appear in the  <Link href='/teacher/student' style={{ color: '#31A34A' }}>Students</Link> page.
                 </Typography>
                 <Typography>
                     5. Access the list of universities of each student with their deadlines by clicking on the student card.

@@ -32,9 +32,9 @@ const TeacherSchema = new mongoose.Schema({
         default: 'teacher'
     },    
     students: [{
-        status: Boolean,
-        email: String,
-        name:String
+        semail: String,
+        name:String,
+        status: Boolean
     }],
     resetPasswordToken: String,
     resetPasswordExpire: Date,

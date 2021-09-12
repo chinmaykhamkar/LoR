@@ -85,6 +85,7 @@ const ResponsiveDrawer = (props) => {
     const token = localStorage.getItem('authTokent');
     localStorage.removeItem('authTokent');
     localStorage.removeItem('email');
+    localStorage.removeItem('tname');
     history.push('/teacher/login');
 
   }
@@ -130,7 +131,7 @@ const ResponsiveDrawer = (props) => {
       <Divider />
       <List>
         <Link href='/teacher/instruction' style={{color:'black'}}>
-          <ListItem className={(props.name) == 'Instructions' ? classes.active : ""} button>
+          <ListItem className={(props.name) == 'Instruction' ? classes.active : ""} button>
             <ListItemIcon>
               <FontAwesomeIcon icon={faQuestionCircle} size={"2x"} />
             </ListItemIcon>

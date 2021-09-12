@@ -34,11 +34,12 @@ exports.profileController = async (req, res, next) => {
 };
 
 exports.updateProfileController = async (req, res, next) => {
-    Student.findOneAndUpdate({ "email": req.params.email })
+    Student.findOne({ "email": req.params.email })
         .then(student => {
-            student.username = req.body.username;
-            student.collegeName = req.body.college;
-            student.lorLink = req.body.lor;
+            // student.username = req.body.username;
+            // student.collegeName = req.body.college;
+            // student.lorLink = req.body.lor;
+            student.set({username:req.body.username,collegeName:req.body.college,lorLink:req.body.lor})
             student.save()
                 .then(student => res.status(200).json({
                     sucess: true,
@@ -54,17 +55,21 @@ exports.updateProfileController = async (req, res, next) => {
 
 
 exports.addTeacherController = async (req, res, next) => {
-    Teacher.findOneAndUpdate({ "email": req.body.email })
+    Teacher.findOne({ "email": req.body.temail })
         .then(teacher => {
-            const tobj = { "email": req.params.email, "name": req.body.name, "status": false };
-            teacher.students = [tobj];
+            const tobj = { "semail": req.body.semail, "name": req.body.name, "status": false };
+            // teacher.students = [tobj];
+            teacher.set(teacher.students.push(tobj));
+            // teacher.students.push(tobj);
             teacher.save()
                 .then(teacher => {
                     console.log(teacher.username);
-                    Student.findOneAndUpdate({ "email": req.params.email })
+                    Student.findOne({ "email": req.body.semail })
                         .then(student => {
-                            const sobj = { "email": req.body.email, "name": teacher.username, "status": false };
-                            student.teachers = [sobj];
+                            const sobj = { "temail": req.body.email, "name": teacher.username, "status": false };
+                            // student.teachers = [sobj];
+                            student.set(student.teachers.push(sobj));
+                            // student.teachers.push(sobj);
                             student.save()
                                 .then(student => console.log(student))
                                 .catch(err => console.log('error inside inside ' + err));

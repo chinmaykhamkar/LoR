@@ -41,7 +41,7 @@ const StudentSchema = new mongoose.Schema({
     shortForm: { type: String, maxlength: 4 }
   }],
   teachers: [{
-    email: String,
+    temail: String,
     name:String,
     status: Boolean
   }],

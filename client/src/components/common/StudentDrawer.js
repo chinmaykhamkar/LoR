@@ -87,6 +87,7 @@ const ResponsiveDrawer = (props) => {
     const token = localStorage.getItem('authToken');
     localStorage.removeItem('authToken');
     localStorage.removeItem('email');
+    localStorage.removeItem('sname');
     history.push('/student/login');
     
   }

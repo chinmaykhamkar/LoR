@@ -31,10 +31,11 @@ exports.profileController = async (req, res, next) => {
 };
 
 exports.updateProfileController = async (req, res, next) => {
-    Teacher.findOneAndUpdate({ "email": req.params.email })
+    Teacher.findOne({ "email": req.params.email })
         .then(teacher => {
-            teacher.username = req.body.username;
-            teacher.collegeName = req.body.college;
+            // teacher.username = req.body.username;
+            // teacher.collegeName = req.body.college;        
+            teacher.set({username:req.body.username,collegeName:req.body.college});
             teacher.save()
                 .then(teacher = res.status(200).json({
                     success: true,

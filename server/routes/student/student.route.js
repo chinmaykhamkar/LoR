@@ -19,7 +19,7 @@ router.route('/profile/:email').get(protect,profileController);
 
 //curd operations
 // router.route('/addUniversity').post(protect,addUniversityController);
-router.route('/addTeacher/:email').post(addTeacherController);
+router.route('/addTeacher').post(protect,addTeacherController);
 router.route('/updateProfile/:email').post(protect,updateProfileController);
 
 module.exports = router;
