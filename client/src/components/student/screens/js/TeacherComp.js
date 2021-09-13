@@ -5,9 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import { faVenusMars } from '@fortawesome/free-solid-svg-icons';
-var config = {
-    headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
-};
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,31 +18,35 @@ const useStyles = makeStyles((theme) => ({
 var config = {
     headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
 };
+
 const TeacherComp = () => {
     const classes = useStyles();
-    const [teacher,setTeacher] = useState({});
+    const [teacher, setTeacher] = useState([{}]);
+    const [reqTeacher, setReqTeacher] = useState([]);
+    const [conTeacher, setConTeacher] = useState([]);
     const [email, setEmail] = useState("");
     const name = localStorage.getItem('sname');
     const semail = localStorage.getItem('email');
     useEffect(() => {
         getTeacherData();
-    },[]);
+    }, [teacher.name]);
 
 
     const getTeacherData = async () => {
-        try{
+        try {
             const teacherData = await axios.get(`http://localhost:5000/student/getTeacherList/${semail}`, config);
             console.log(teacherData.data.data);
             setTeacher(teacherData.data.data);
-            
-        }catch(err){
-            console.log('error '+err);
+
+
+        } catch (err) {
+            console.log('error ' + err);
         }
     }
 
     const handleAddTeacher = async (e) => {
         e.preventDefault();
-        console.log('clicked');        
+        console.log('clicked');
         try {
             const addTeacher = await axios.post('http://localhost:5000/student/addTeacher',
                 { semail, email, name },
@@ -55,7 +57,7 @@ const TeacherComp = () => {
             // try{
             //     const teacherData = await axios.get(`http://localhost:5000/student/getTeacherList/${semail}`, config);
             //     console.log(teacherData.data.data);
-                
+
             // }catch(err){
             //     console.log(err);
             // }
@@ -64,6 +66,29 @@ const TeacherComp = () => {
             console.log(error);
         }
     }
+
+    const requestTeacher = teacher.map((d) => {
+        if (!d.status) {
+
+            return (
+                <div key={d._id} className="reqTeacher">
+                    {d.name}
+                </div>
+            )
+        }
+    })
+    const acceptTeacher = teacher.map((d) => {
+        if (d.status) {
+
+            return (
+                <div key={d._id} className="accTeacher">
+                    {d.name}
+                </div>
+            )
+        }
+    })
+
+
 
     return (
         <div className="mainDivTeach">
@@ -94,23 +119,16 @@ const TeacherComp = () => {
                 <div className="requestBottom">
                     <div className="topTitle">Request Pending</div>
                     <div className="reqList">
-                        <div className="reqTeacher">
-                            Teacher 1
-                        </div>
-                        <div className="reqTeacher">
-                            Teacher 2
-                        </div>
+                        {/* {teacher.map(teacher => teacher.temail)} */}
+                        {requestTeacher}
+
                     </div>
                 </div>
                 <div className="accBotton">
                     <div className="topTitle">Request Accepted</div>
                     <div className="accList">
-                        <div className="accTeacher">
-                            Teacher 1
-                        </div>
-                        <div className="accTeacher">
-                            Teacher 2
-                        </div>
+                        {acceptTeacher}
+
 
                     </div>
                 </div>
