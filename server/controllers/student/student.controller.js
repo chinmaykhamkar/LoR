@@ -22,6 +22,7 @@ exports.universityController = async (req, res, next) => {
         data: "universityController route"
     });
 };
+// get user info
 exports.profileController = async (req, res, next) => {
 
     Student.find({ "email": req.params.email })
@@ -33,6 +34,8 @@ exports.profileController = async (req, res, next) => {
 
 };
 
+
+//update user info
 exports.updateProfileController = async (req, res, next) => {
     Student.findOne({ "email": req.params.email })
         .then(student => {
@@ -53,6 +56,7 @@ exports.updateProfileController = async (req, res, next) => {
 }
 
 
+//create link btw teacher and student
 
 exports.addTeacherController = async (req, res, next) => {
     Teacher.findOne({ "email": req.body.email })
@@ -88,12 +92,14 @@ exports.addTeacherController = async (req, res, next) => {
         .catch(err => res.status(400).json('error outside ' + err));
 }
 
+// get teachers array
 
 exports.teacherListController = async (req,res,next) => {
-    Student.findOne({"email":req.params.email})
+    Student.find({"email":req.params.email})
         .then(student => res.status(200).json({
             sucess:true,
-            data:student.data.data
+            data:student[0].teachers
+            
         }))
         .catch(err => res.status(400).json('Error '+err));
 }

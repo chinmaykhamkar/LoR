@@ -8,6 +8,7 @@ import { faVenusMars } from '@fortawesome/free-solid-svg-icons';
 var config = {
     headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
 };
+
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
@@ -21,9 +22,26 @@ var config = {
 };
 const TeacherComp = () => {
     const classes = useStyles();
+    const [teacher,setTeacher] = useState({});
     const [email, setEmail] = useState("");
     const name = localStorage.getItem('sname');
     const semail = localStorage.getItem('email');
+    useEffect(() => {
+        getTeacherData();
+    },[]);
+
+
+    const getTeacherData = async () => {
+        try{
+            const teacherData = await axios.get(`http://localhost:5000/student/getTeacherList/${semail}`, config);
+            console.log(teacherData.data.data);
+            setTeacher(teacherData.data.data);
+            
+        }catch(err){
+            console.log('error '+err);
+        }
+    }
+
     const handleAddTeacher = async (e) => {
         e.preventDefault();
         console.log('clicked');        
@@ -33,12 +51,14 @@ const TeacherComp = () => {
                 config
             );
             console.log(addTeacher.data.data);
-            try{
-                const teacherData = await axios.get(`http://localhost:5000/student/getTeacherList/${semail}`, config);
-                console.log(teacherData);
-            }catch(err){
-                console.log(err);
-            }
+            getTeacherData();
+            // try{
+            //     const teacherData = await axios.get(`http://localhost:5000/student/getTeacherList/${semail}`, config);
+            //     console.log(teacherData.data.data);
+                
+            // }catch(err){
+            //     console.log(err);
+            // }
 
         } catch (error) {
             console.log(error);
