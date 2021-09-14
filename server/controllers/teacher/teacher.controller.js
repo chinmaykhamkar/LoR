@@ -78,12 +78,12 @@ exports.acceptRequestController = async (req, res, next) => {
             // console.log(student.teachers[sobj]);
             student.save()
                 .then(student => {
-                    Teacher.findOne({ "email": req.body.temail }).
-                        then(teacher => {
+                    Teacher.findOne({ "email": req.body.temail })
+                        .then(teacher => {
                             const tobj = teacher.students.findIndex(d => d.semail == req.body.semail);
-                            console.log(tobj);
+                            // console.log(tobj);
                             teacher.students[tobj].status = true;
-                            console.log(teacher.students[tobj]);
+                            // console.log(teacher.students[tobj]);
                             teacher.save();
                         })
                         .catch(err => console.log('error inside ' + err));
@@ -108,7 +108,22 @@ exports.rejectRequestController = async (req, res, next) => {
             student.teachers.splice(student.teachers[sobj], 1);
             console.log(student.teachers);
             student.save()
-                .then(student => console.log(student))
+                .then(student => {
+                    Teacher.findOne({ "email": req.body.temail })
+                        .then(teacher => {
+                            const tobj = teacher.students.findIndex(d => d.semail == req.body.semail);
+                            teacher.students.splice(teacher.students[tobj], 1);
+                            console.log(teacher.students);
+                            teacher.save();
+                        })
+                        .catch(err => console.log('error inside ' + err));
+                    res.status(200).json({
+                        sucess: true,
+                        message: 'delete success',
+                        data: student.teachers
+                    })
+
+                })
                 .catch(err => console.log(err));
         }).catch(err => res.status(400).json('errror ' + err));
 }

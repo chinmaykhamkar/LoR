@@ -8,9 +8,11 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios'
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 import '../css/ProfileComp.css'
 import 'react-notifications/lib/Notification'
+import swal from 'sweetalert';
+
 var storeData;
 var config = {
     headers: { Authorization: `Bearer ${localStorage.getItem('authTokent')}` }
@@ -28,20 +30,20 @@ const ProfileComp = () => {
 
     }, []);
 
-    const getData = async () => {        
+    const getData = async () => {
 
         try {
             const allData = await axios.get(`http://localhost:5000/teacher/profile/${email}`, config);
             storeData = allData.data.data;
             // setData(storeData);
             setUsername(storeData[0].username);
-            setCollege(storeData[0].collegeName);            
+            setCollege(storeData[0].collegeName);
             console.log(storeData);
             setLoading(false);
 
         } catch (err) {
             console.log(err);
-        }     
+        }
 
     }
 
@@ -49,29 +51,29 @@ const ProfileComp = () => {
         setOpen(true);
     };
 
-    const handleSave = async(e) => {
+    const handleSave = async (e) => {
         e.preventDefault();
 
-        try{
+        try {
             const updateData = await axios.post(
                 `http://localhost:5000/teacher/updateProfile/${email}`,
-                {username,college},
+                { username, college },
                 config
             );
             storeData = updateData.data.data;
             console.log(storeData);
             setOpen(false);
-            NotificationManager.success('Profile updated','',2000);
+            NotificationManager.success('Profile updated', '', 2000);
 
-        } catch(error){
+        } catch (error) {
             console.log(error);
-            NotificationManager.success('Error','Please try again',2000);
+            NotificationManager.success('Error', 'Please try again', 2000);
         }
     };
 
     const handleClose = () => {
         setUsername(storeData[0].username);
-        setCollege(storeData[0].collegeName);        
+        setCollege(storeData[0].collegeName);
         setOpen(false);
 
     };
@@ -81,13 +83,14 @@ const ProfileComp = () => {
         return (
             <div className='profileMain'>
                 <CircularProgress />
+                
             </div>
         )
     }
 
     return (
         <div className='profileMain'>
-            <NotificationContainer/>
+            <NotificationContainer />
             <div className='profileCard'>
                 <div className='profileDiv'>
                     <div className='profileTitle'>
@@ -104,7 +107,7 @@ const ProfileComp = () => {
                                 <div className='profileVal'>{college}</div>
                             ) : <div className='profileVal'>None</div>
                         }
-                    </div>                   
+                    </div>
                 </div>
             </div>
             <div className='profileEdit'>
@@ -138,7 +141,7 @@ const ProfileComp = () => {
                                 value={college}
                                 onChange={(e) => setCollege(e.target.value)}
                             />
-                            <br /> 
+                            <br />
                         </DialogContent>
                         <DialogActions>
                             <Button variant="contained" type="submit" onClick={handleClose} color="secondary">

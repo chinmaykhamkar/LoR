@@ -11,6 +11,7 @@ import axios from 'axios'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import '../css/ProfileComp.css'
 import 'react-notifications/lib/Notification'
+import swal from 'sweetalert';
 var storeData;
 var config = {
     headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
@@ -85,6 +86,7 @@ const ProfileComp = () => {
         return (
             <div className='profileMain'>
                 <CircularProgress />
+                
             </div>
         )
     }

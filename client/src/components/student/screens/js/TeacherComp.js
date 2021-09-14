@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import { faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import swal from 'sweetalert';
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
@@ -60,6 +60,8 @@ const TeacherComp = () => {
 
         } catch (error) {
             console.log(error);
+            swal("Oops","Couldn't find teacher!" , "error");
+
         }
         setEmail('');
     }

@@ -2,7 +2,7 @@ student
 home page
 profile page ----------- done
 uni page
-teacher page --- doing
+teacher page --- done
 how to -----------------done
 
 
@@ -17,6 +17,6 @@ home
 profile --------------- done
 students
 students/uni
-request
+request ---------------done
 how to ----------------done
 

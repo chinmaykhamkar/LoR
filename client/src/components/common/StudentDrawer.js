@@ -152,11 +152,11 @@ const ResponsiveDrawer = (props) => {
           </ListItemIcon>
           <ListItemText primary="Support us" />
         </ListItem>
-        <ListItem className={(props.name) == 'Logout' ? classes.active : ""} button>
+        <ListItem onClick={logoutHandler}  className={(props.name) == 'Logout' ? classes.active : ""} button>
           <ListItemIcon>
             <FontAwesomeIcon icon={faSignOutAlt} size={"2x"} />
           </ListItemIcon>
-          <ListItemText primary="Logout" onClick={logoutHandler} />
+          <ListItemText primary="Logout" />
         </ListItem>
       </List>
     </div>
