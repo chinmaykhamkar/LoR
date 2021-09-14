@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: color,
   },
 }));
-const LoginScreent = ({history}) => {
+const LoginScreent = ({ history }) => {
 
 
   const [email, setEmail] = useState("");
@@ -67,7 +67,9 @@ const LoginScreent = ({history}) => {
         config
       );
       localStorage.setItem("authTokent", data.token);
-      localStorage.setItem("email",email);
+      localStorage.setItem("email", email);
+      localStorage.setItem("tname", data.data);
+
       history.push("/teacher/home");
     } catch (error) {
       setError(error.response.data.error);
@@ -97,7 +99,7 @@ const LoginScreent = ({history}) => {
               Sign in
             </Typography>
             <form onSubmit={loginHandler} className={classes.form} noValidate>
-            {error && showError(error)}
+              {error && showError(error)}
               <TextField
                 type="email"
                 variant="outlined"

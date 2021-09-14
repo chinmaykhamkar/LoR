@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import { faVenusMars } from '@fortawesome/free-solid-svg-icons';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,8 +22,7 @@ var config = {
 const TeacherComp = () => {
     const classes = useStyles();
     const [teacher, setTeacher] = useState([{}]);
-    const [reqTeacher, setReqTeacher] = useState([]);
-    const [conTeacher, setConTeacher] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [email, setEmail] = useState("");
     const name = localStorage.getItem('sname');
     const semail = localStorage.getItem('email');
@@ -37,7 +36,7 @@ const TeacherComp = () => {
             const teacherData = await axios.get(`http://localhost:5000/student/getTeacherList/${semail}`, config);
             console.log(teacherData.data.data);
             setTeacher(teacherData.data.data);
-
+            setLoading(false);
 
         } catch (err) {
             console.log('error ' + err);
@@ -47,24 +46,22 @@ const TeacherComp = () => {
     const handleAddTeacher = async (e) => {
         e.preventDefault();
         console.log('clicked');
+        if(!email){
+            alert('Enter Email ID');
+            return;
+        }
         try {
             const addTeacher = await axios.post('http://localhost:5000/student/addTeacher',
                 { semail, email, name },
                 config
             );
             console.log(addTeacher.data.data);
-            getTeacherData();
-            // try{
-            //     const teacherData = await axios.get(`http://localhost:5000/student/getTeacherList/${semail}`, config);
-            //     console.log(teacherData.data.data);
-
-            // }catch(err){
-            //     console.log(err);
-            // }
+            getTeacherData();           
 
         } catch (error) {
             console.log(error);
         }
+        setEmail('');
     }
 
     const requestTeacher = teacher.map((d) => {
@@ -90,6 +87,13 @@ const TeacherComp = () => {
 
 
 
+    if (loading) {
+        return (
+            <div className='profileMain'>
+                <CircularProgress />
+            </div>
+        )
+    }
     return (
         <div className="mainDivTeach">
             <div className="mainTop">
@@ -103,6 +107,9 @@ const TeacherComp = () => {
                             label="Enter Email"
                             variant="outlined"
                             type="email"
+                            required
+                            autoComplete="email"
+                            autoFocus
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
 
@@ -119,7 +126,7 @@ const TeacherComp = () => {
                 <div className="requestBottom">
                     <div className="topTitle">Request Pending</div>
                     <div className="reqList">
-                        {/* {teacher.map(teacher => teacher.temail)} */}
+
                         {requestTeacher}
 
                     </div>

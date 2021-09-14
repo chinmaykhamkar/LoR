@@ -123,5 +123,5 @@ exports.resetPassword = async (req, res, next) => {
 
 const sendToken = (teacher, statusCode, res) => {
     const token = teacher.getSignedJwtToken();
-    res.status(statusCode).json({ sucess: true, token });
+    res.status(statusCode).json({ sucess: true, token, data:teacher.username });
   };
