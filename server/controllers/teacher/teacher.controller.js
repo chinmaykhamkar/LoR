@@ -69,36 +69,48 @@ exports.studentUniListController = async (req, res, next) => {
 
 //accepct student request
 
-exports.acceptRequestController = async (req,res,next) => {
-    Student.findOne({"email":req.body.semail})
-    .then(student => {
-        const sobj = student.teachers.findIndex((f => f.temail == req.body.temail));
-        console.log(sobj);
-        student.teachers[sobj].status = true;
-        console.log(student.teachers[sobj]);
-        student.save()
-        .then(student => res.status(200).json({
-            success:true,
-            message:'flag changed',
-            data:student.teachers
-        }))
-        .catch(err => console.log(err));
-    }).catch(err => res.status(400).json('errror '+err));
+exports.acceptRequestController = async (req, res, next) => {
+    Student.findOne({ "email": req.body.semail })
+        .then(student => {
+            const sobj = student.teachers.findIndex((f => f.temail == req.body.temail));
+            // console.log(sobj);
+            student.teachers[sobj].status = true;
+            // console.log(student.teachers[sobj]);
+            student.save()
+                .then(student => {
+                    Teacher.findOne({ "email": req.body.temail }).
+                        then(teacher => {
+                            const tobj = teacher.students.findIndex(d => d.semail == req.body.semail);
+                            console.log(tobj);
+                            teacher.students[tobj].status = true;
+                            console.log(teacher.students[tobj]);
+                            teacher.save();
+                        })
+                        .catch(err => console.log('error inside ' + err));
+                    res.status(200).json({
+                        sucess: true,
+                        message: 'flag done',
+                        data: student.teachers
+                    })
+
+                })
+                .catch(err => console.log(err));
+        }).catch(err => res.status(400).json('errror ' + err));
 }
 
 //reject student requet
 
-exports.rejectRequestController = async (req,res,next) => {
-    Student.findOne({"email":req.body.semail})
-    .then(student => {
-        const sobj = student.teachers.findIndex((f => f.temail == req.body.temail));
-        console.log(sobj);
-        student.teachers.splice(student.teachers[sobj],1);
-        console.log(student.teachers);
-        student.save()
-        .then(student => console.log(student))
-        .catch(err => console.log(err));
-    }).catch(err => res.status(400).json('errror '+err));
+exports.rejectRequestController = async (req, res, next) => {
+    Student.findOne({ "email": req.body.semail })
+        .then(student => {
+            const sobj = student.teachers.findIndex((f => f.temail == req.body.temail));
+            console.log(sobj);
+            student.teachers.splice(student.teachers[sobj], 1);
+            console.log(student.teachers);
+            student.save()
+                .then(student => console.log(student))
+                .catch(err => console.log(err));
+        }).catch(err => res.status(400).json('errror ' + err));
 }
 
 
