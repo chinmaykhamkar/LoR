@@ -6,7 +6,7 @@ const {
     universityController,
     profileController,
     teacherListController,
-    // addUniversityController,
+    addUniversityController,
     addTeacherController,
     updateProfileController
 } = require('../../controllers/student/student.controller');
@@ -15,12 +15,12 @@ const {protect} = require("../../middleware/student/student.auth");
 //page routes
 router.route('/home').get(protect,homeController);
 router.route('/teachers').get(protect,teachersController);
-router.route('/university').get(protect,universityController);
+router.route('/university/:email').get(protect,universityController);
 router.route('/profile/:email').get(protect,profileController); 
 router.route('/getTeacherList/:email').get(protect,teacherListController);
 
 //curd operations
-// router.route('/addUniversity').post(protect,addUniversityController);
+router.route('/addUniversity/:email').post(protect,addUniversityController);
 router.route('/addTeacher').post(protect,addTeacherController);
 router.route('/updateProfile/:email').post(protect,updateProfileController);
 

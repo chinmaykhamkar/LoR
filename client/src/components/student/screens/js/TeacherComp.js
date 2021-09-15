@@ -7,6 +7,7 @@ import axios from 'axios';
 import { faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import swal from 'sweetalert';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
@@ -40,6 +41,8 @@ const TeacherComp = () => {
 
         } catch (err) {
             console.log('error ' + err);
+            NotificationManager.success('Please Logout and Login again','Error',5000);
+
         }
     }
 
@@ -93,6 +96,8 @@ const TeacherComp = () => {
         return (
             <div className='profileMain'>
                 <CircularProgress />
+                <NotificationContainer/>                
+
             </div>
         )
     }

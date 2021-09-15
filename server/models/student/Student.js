@@ -38,6 +38,7 @@ const StudentSchema = new mongoose.Schema({
   university: [{
     name: String,
     status: Boolean,
+    deadline:Date,
     shortForm: { type: String, maxlength: 4 }
   }],
   teachers: [{

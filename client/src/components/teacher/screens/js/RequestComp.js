@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios';
 import swal from 'sweetalert';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 var config = {
     headers: { Authorization: `Bearer ${localStorage.getItem('authTokent')}` }
@@ -37,6 +38,8 @@ const RequestComp = () => {
 
         } catch (err) {
             console.log('error ' + err);
+            NotificationManager.success('Please Logout and Login again','Error',5000);
+
 
         }
 
@@ -112,6 +115,8 @@ const RequestComp = () => {
         return (
             <div className='profileMain'>
                 <CircularProgress />
+                <NotificationContainer/>                
+
 
             </div>
         )

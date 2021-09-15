@@ -16,11 +16,16 @@ exports.teachersController = async (req, res, next) => {
         data: "teacher route"
     });
 };
+
+//get university info
 exports.universityController = async (req, res, next) => {
-    res.status(200).json({
-        sucess: true,
-        data: "universityController route"
-    });
+    Student.find({ "email": req.params.email })
+        .then(student => res.status(200).json({
+            sucess: true,
+            data: student[0].university
+
+        }))
+        .catch(err => res.status(400).json('Error ' + err));
 };
 // get user info
 exports.profileController = async (req, res, next) => {
@@ -42,7 +47,7 @@ exports.updateProfileController = async (req, res, next) => {
             // student.username = req.body.username;
             // student.collegeName = req.body.college;
             // student.lorLink = req.body.lor;
-            student.set({username:req.body.username,collegeName:req.body.college,lorLink:req.body.lor})
+            student.set({ username: req.body.username, collegeName: req.body.college, lorLink: req.body.lor })
             student.save()
                 .then(student => res.status(200).json({
                     sucess: true,
@@ -55,6 +60,23 @@ exports.updateProfileController = async (req, res, next) => {
 
 }
 
+//add universities
+exports.addUniversityController = async (req, res, next) => {
+    Student.findOne({ "email": req.params.email })
+        .then(student => {
+            const uobj = {"name":req.body.name,"status":false,"deadline":req.body.deadline,"shortForm":req.body.short};
+            student.set(student.university.push(uobj));
+            student.save()
+                .then(student => res.status(200).json({
+                    sucess: true,
+                    message: 'update sucess',
+                    data: student.university
+                }))
+                .catch(err => res.status(400).json('error ' + err));
+        })
+        .catch(err => res.status(400).json('error ' + err));
+
+}
 
 //create link btw teacher and student
 
@@ -94,14 +116,14 @@ exports.addTeacherController = async (req, res, next) => {
 
 // get teachers array
 
-exports.teacherListController = async (req,res,next) => {
-    Student.find({"email":req.params.email})
+exports.teacherListController = async (req, res, next) => {
+    Student.find({ "email": req.params.email })
         .then(student => res.status(200).json({
-            sucess:true,
-            data:student[0].teachers
-            
+            sucess: true,
+            data: student[0].teachers
+
         }))
-        .catch(err => res.status(400).json('Error '+err));
+        .catch(err => res.status(400).json('Error ' + err));
 }
 
 

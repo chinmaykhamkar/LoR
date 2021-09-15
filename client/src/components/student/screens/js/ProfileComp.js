@@ -45,6 +45,7 @@ const ProfileComp = () => {
 
         } catch (err) {
             console.log(err);
+            NotificationManager.success('Please Logout and Login again','Error',5000);
         }     
 
     }
@@ -77,7 +78,7 @@ const ProfileComp = () => {
         setCollege(storeData[0].collegeName);
         setLor(storeData[0].lorLink);
         setOpen(false);
-        NotificationManager.success('Error','Please try again',2000);
+        // NotificationManager.success('Error','Please try again',2000);
 
     };
 
@@ -86,7 +87,7 @@ const ProfileComp = () => {
         return (
             <div className='profileMain'>
                 <CircularProgress />
-                
+                <NotificationContainer/>                
             </div>
         )
     }
