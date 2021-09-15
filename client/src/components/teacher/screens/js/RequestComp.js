@@ -5,35 +5,40 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios';
 import swal from 'sweetalert';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/Notification'
 
 var config = {
     headers: { Authorization: `Bearer ${localStorage.getItem('authTokent')}` }
 };
-var size;
+
 var name = localStorage.getItem('tname');
 var temail = localStorage.getItem('email');
+// var size=0;  
 const RequestComp = () => {
 
-    const [request, setRequest] = useState([{}]);
-    
+    const [request, setRequest] = useState([{}]);    
     const [loading, setLoading] = useState(true);
-
+    const [size,setSize] = useState(0); 
     useEffect(() => {
         getData();
     }, [request.name]);
-
+    
     const getData = async () => {
         try {
+            var count = 0;
             const requestData = await axios.get(`http://localhost:5000/teacher/request/${temail}`, config);
             console.log(requestData.data.data);
             setRequest(requestData.data.data);
             for(let i=0;i<requestData.data.data.length;i++){
-                if(!requestData.data.data[i].status){
-                    size++;
+                if(requestData.data.data[i].status == false){
+                    count = count + 1;
+                    setSize(count);
+                    // setSize(size+1);
                 }
             }
             // size = requestData.data.data.length;
             setLoading(false);
+            console.log(size);
 
 
         } catch (err) {
@@ -53,8 +58,9 @@ const RequestComp = () => {
                 config
             );
             console.log(accepcted.data.data);
-            getData();
-            size--;
+            setSize(size-2);
+            // size=size-2
+            getData();           
             
         } catch (err) {
             console.log('accept error '+err);
@@ -69,8 +75,10 @@ const RequestComp = () => {
                 config
             );
             console.log(rejected.data.data);
-            getData();
-            size--;
+            setSize(size-2);
+            // size=size-2;
+            getData();           
+
 
         } catch (err) {
             console.log('reject error '+err);
@@ -83,7 +91,7 @@ const RequestComp = () => {
             return (
                 <div key={d._id} className="reqCard">
                     <div className="cardLeft">
-                        {d.name}
+                        {d.name}                        
                     </div>
                     <div className="cardRight">
                         <div className="reqAccept">

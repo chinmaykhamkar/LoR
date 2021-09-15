@@ -8,6 +8,8 @@ import { faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import swal from 'sweetalert';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
+import 'react-notifications/lib/Notification'
+
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {

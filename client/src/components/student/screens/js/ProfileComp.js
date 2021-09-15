@@ -9,8 +9,8 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
-import '../css/ProfileComp.css'
 import 'react-notifications/lib/Notification'
+import '../css/ProfileComp.css'
 import swal from 'sweetalert';
 var storeData;
 var config = {
