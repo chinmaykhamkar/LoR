@@ -20,6 +20,7 @@ router.route('/profile/:email').get(protect,profileController);
 router.route('/student/:email/uniList').get(protect,studentUniListController);
 
 
+
 //curd operations
 router.route('/updateProfile/:email').post(protect,updateProfileController);
 router.route('/acceptRequest').post(protect,acceptRequestController);
