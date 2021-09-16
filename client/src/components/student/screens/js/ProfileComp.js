@@ -10,7 +10,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import 'react-notifications/lib/Notification'
-import '../css/ProfileComp.css';
+import '../css/StudentProfile.css';
 import swal from 'sweetalert';
 var storeData;
 var config = {
@@ -85,7 +85,7 @@ const ProfileComp = () => {
 
     if (loading) {
         return (
-            <div className='profileMain'>
+            <div className='profileMains'>
                 <CircularProgress />
                 <NotificationContainer/>                
             </div>
@@ -93,28 +93,28 @@ const ProfileComp = () => {
     }
 
     return (
-        <div className='profileMain'>
+        <div className='profileMains'>
             <NotificationContainer/>
-            <div className='profileCard'>
-                <div className='profileDiv'>
-                    <div className='profileTitle'>
-                        <div className='profileKey'>User Name</div>
-                        <div className='profileVal'>{username}</div>
+            <div className='profileCards'>
+                <div className='profileDivs'>
+                    <div className='profileTitles'>
+                        <div className='profileKeys'>User Name</div>
+                        <div className='profileVals'>{username}</div>
                     </div>
-                    <div className='profileTitle'>
-                        <div className='profileKey'>Email</div>
-                        <div className='profileVal'>{email}</div>
+                    <div className='profileTitles'>
+                        <div className='profileKeys'>Email</div>
+                        <div className='profileVals'>{email}</div>
                     </div>
-                    <div className='profileTitle'>
-                        <div className='profileKey'>College Name</div>{
+                    <div className='profileTitles'>
+                        <div className='profileKeys'>College Name</div>{
                             college ? (
-                                <div className='profileVal'>{college}</div>
-                            ) : <div className='profileVal'>None</div>
+                                <div className='profileVals'>{college}</div>
+                            ) : <div className='profileVals'>None</div>
                         }
                     </div>
-                    <div className='profileTitle'>
-                        <div className='profileKey'>LoR link</div>
-                        <div className='profileVal'>
+                    <div className='profileTitles'>
+                        <div className='profileKeys'>LoR link</div>
+                        <div className='profileVals'>
                             <Button variant="contained" color="primary" onClick={() => {
                                 navigator.clipboard.writeText(`${lor}`);
                                 setCopied('Copied');
@@ -127,7 +127,7 @@ const ProfileComp = () => {
                     </div>
                 </div>
             </div>
-            <div className='profileEdit'>
+            <div className='profileEdits'>
                 <div>
                     <Button variant="contained" color="primary" onClick={handleClickOpen}>
                         Edit

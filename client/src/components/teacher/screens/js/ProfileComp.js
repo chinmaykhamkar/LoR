@@ -9,7 +9,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios'
 import { NotificationContainer, NotificationManager } from 'react-notifications';
-import '../css/ProfileCompt.css'
+import '../css/TeacherProfile.css'
 import 'react-notifications/lib/Notification'
 import swal from 'sweetalert';
 
