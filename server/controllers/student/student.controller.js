@@ -17,6 +17,30 @@ exports.teachersController = async (req, res, next) => {
     });
 };
 
+// get teachers array
+
+exports.teacherListController = async (req, res, next) => {
+    Student.find({ "email": req.params.email })
+        .then(student => res.status(200).json({
+            sucess: true,
+            data: student[0].teachers
+
+        }))
+        .catch(err => res.status(400).json('Error ' + err));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 //get university info
 exports.universityController = async (req, res, next) => {
     Student.find({ "email": req.params.email })
@@ -27,6 +51,49 @@ exports.universityController = async (req, res, next) => {
         }))
         .catch(err => res.status(400).json('Error ' + err));
 };
+
+//add universities
+
+exports.addUniversityController = async (req, res, next) => {
+    Student.findOne({ "email": req.params.email })
+        .then(student => {
+            const uobj = { "name": req.body.name, "status": false, "deadline": req.body.deadline, "shortForm": req.body.short };
+            student.set(student.university.push(uobj));
+            student.save()
+                .then(student => {
+                    for (let i = 0; i < student['teachers'].length; i++) {
+                        Teacher.findOne({ "email": student['teachers'][i].temail })
+                            .then(teacher => {
+                                const tobj = teacher.students.findIndex(d => d.semail == req.params.email);
+                                const uniobj = { "name": req.body.name, "status": false, "deadline": req.body.deadline, "shortForm": req.body.short };
+                                teacher.students[tobj]['university'].push(uniobj);
+                                teacher.save()
+                                // console.log(teacher);
+                            })
+                            .catch(err => console.log('error inside ' + err));
+                    }
+                    res.status(200).json({
+                        sucess: true,
+                        message: 'flag done',
+                        data: student
+                    })
+                })
+                .catch(err => console.log('error outside inside ' + err))
+
+        }).catch(err => res.status(400).json('errror outside' + err));
+
+}
+
+
+
+
+
+
+
+
+
+
+
 // get user info
 exports.profileController = async (req, res, next) => {
 
@@ -60,23 +127,9 @@ exports.updateProfileController = async (req, res, next) => {
 
 }
 
-//add universities
-exports.addUniversityController = async (req, res, next) => {
-    Student.findOne({ "email": req.params.email })
-        .then(student => {
-            const uobj = {"name":req.body.name,"status":false,"deadline":req.body.deadline,"shortForm":req.body.short};
-            student.set(student.university.push(uobj));
-            student.save()
-                .then(student => res.status(200).json({
-                    sucess: true,
-                    message: 'update sucess',
-                    data: student.university
-                }))
-                .catch(err => res.status(400).json('error ' + err));
-        })
-        .catch(err => res.status(400).json('error ' + err));
 
-}
+
+
 
 //create link btw teacher and student
 
@@ -114,17 +167,6 @@ exports.addTeacherController = async (req, res, next) => {
         .catch(err => res.status(400).json('error outside ' + err));
 }
 
-// get teachers array
-
-exports.teacherListController = async (req, res, next) => {
-    Student.find({ "email": req.params.email })
-        .then(student => res.status(200).json({
-            sucess: true,
-            data: student[0].teachers
-
-        }))
-        .catch(err => res.status(400).json('Error ' + err));
-}
 
 
 
@@ -134,20 +176,3 @@ exports.teacherListController = async (req, res, next) => {
 
 
 
-// var tname;
-// exports.addTeacherController = async (req, res, next) => {
-//     Student.findOneAndUpdate({ "email": req.params.email })
-//         .then(student => {
-//             const sobj = { "email": req.body.email, "name": tname, "status": false };
-//             student.teachers = [sobj];
-//             student.save()
-//                 .then(student => res.status(200).json({
-//                     sucess: true,
-//                     message: 'update sucess',
-//                     data: student
-//                 }))
-//                 .catch(err => res.status(400).json('error ' + err));
-//         })
-//         .catch(err => res.status(400).json('error ' + err));
-
-// }

@@ -56,6 +56,8 @@ const UniversityComp = () => {
             alert('Enter all the values')
         }
         
+        // console.log(name,dead,shortForm)
+        
         try{
             const date = new Date(`${dead}`);
             const deadline = date.toISOString();
@@ -77,7 +79,7 @@ const UniversityComp = () => {
 
     const loadUni = university.map((d) => {
         const date = new Date(`${d.deadline}`);
-        // console.log(date);
+        console.log(date);
         const year = date.getFullYear();
         const month = date.getMonth() + 1;
         const day = date.getDate();        

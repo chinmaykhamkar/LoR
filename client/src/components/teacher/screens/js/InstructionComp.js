@@ -22,11 +22,14 @@ const InstructionComp = () => {
                 <Typography>
                     5. Access the list of universities of each student with their deadlines by clicking on the student card.
                 </Typography>
-                <Typography>
-                    5. The link for the LoR will be available on this screen to copy. If not then inform the student to update the LoR link asap. 
+                <Typography style={{fontWeight:'bold'}}>
+                    Please tell students to send request before adding Universities 
                 </Typography>
                 <Typography>
-                    5. After uploading the LoR, change the status of that particular university and save.
+                    6. The link for the LoR will be available on this screen to copy. If not then inform the student to update the LoR link asap. 
+                </Typography>
+                <Typography>
+                    7. After uploading the LoR, change the status of that particular university and save.
                 </Typography>
             </div>
         </div>

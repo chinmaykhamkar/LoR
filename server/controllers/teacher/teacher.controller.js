@@ -18,40 +18,16 @@ exports.requestController = async (req, res, next) => {
         }))
         .catch(err => res.status(400).json('Error ' + err));
 };
-exports.studentsController = async (req, res, next) => {
-    Teacher.findOne({ "email": req.params.email })
-        .then(teacher => {
-
-            console.log(teacher['students'][0].semail);
-            for (var i = 0; i < teacher['students'].length; i++) {
-                if (teacher['students'][i].status) {
-                    Student.findOne({ "email": teacher['students'][i].semail })
-                        .then(student => {
-                            var studentList = [];
-                            // console.log(student['university']);
-                            studentList.push(student['university']);
 
 
-                        })
-                        .catch(err => console.log('error inside ' + err));
-                }
-            }
-            res.status(200).json({
-                success: true,
-                message: 'list success',
-                data: studentList
-            })
 
 
-            // res.status(200).json({
-            //     success: true,
-            //     message: 'list success',
-            //     data: teacher
-            // })
 
-        })
-        .catch(err => res.status(400).json('errror ' + err));
-};
+
+
+
+
+
 
 //profile display
 exports.profileController = async (req, res, next) => {
@@ -63,7 +39,7 @@ exports.profileController = async (req, res, next) => {
         .catch(err => res.status(400).json('Error ' + err));
 };
 
-//update prile
+//update profile
 exports.updateProfileController = async (req, res, next) => {
     Teacher.findOne({ "email": req.params.email })
         .then(teacher => {
@@ -88,12 +64,19 @@ exports.studentUniListController = async (req, res, next) => {
     });
 };
 
-exports.studentUniListController = async (req, res, next) => {
-    res.status(200).json({
-        sucess: true,
-        data: "studentUniListController route"
-    });
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //accepct student request
 
@@ -155,6 +138,67 @@ exports.rejectRequestController = async (req, res, next) => {
                 .catch(err => console.log(err));
         }).catch(err => res.status(400).json('errror ' + err));
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exports.studentsController = async (req, res, next) => {
+    Teacher.findOne({ "email": req.params.email })
+        .then(teacher => {
+
+            console.log(teacher['students'][0].semail);
+            for (var i = 0; i < teacher['students'].length; i++) {
+                if (teacher['students'][i].status) {
+                    Student.findOne({ "email": teacher['students'][i].semail })
+                        .then(student => {
+                            var studentList = [];
+                            // console.log(student['university']);
+                            studentList.push(student['university']);
+
+
+                        })
+                        .catch(err => console.log('error inside ' + err));
+                }
+            }
+            res.status(200).json({
+                success: true,
+                message: 'list success',
+                data: studentList
+            })
+
+
+            // res.status(200).json({
+            //     success: true,
+            //     message: 'list success',
+            //     data: teacher
+            // })
+
+        })
+        .catch(err => res.status(400).json('errror ' + err));
+};
+
+
+exports.studentUniListController = async (req, res, next) => {
+    res.status(200).json({
+        sucess: true,
+        data: "studentUniListController route"
+    });
+};
+
 
 
 

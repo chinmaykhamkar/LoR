@@ -16,6 +16,9 @@ const InstructionComp = () => {
                 <Typography>
                     3. Ask for the Email ID used by your teacher on this app and add that Email in the <Link href='/student/teachers' style={{ color: '#DA2426' }}>Teachers</Link> section to link that teacher with your account.
                 </Typography>
+                <Typography style={{fontWeight:'bold'}}>
+                    Please do the above step before doing step 5.
+                </Typography>
                 <Typography>
                     4. Tell your teacher to accept your request.
                 </Typography>
@@ -23,7 +26,7 @@ const InstructionComp = () => {
                     5. Add your universities with deadline in the <Link href='/student/university' style={{ color: '#DA2426' }}>University</Link> section.
                 </Typography>
                 <Typography>
-                    5. Wait for your teacher to update the status of your LoR on the portal 
+                    6. Wait for your teacher to update the status of your LoR on the portal 
                 </Typography>
             </div>
         </div>
