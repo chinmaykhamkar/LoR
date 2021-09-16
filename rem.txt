@@ -15,8 +15,8 @@ how to ------------------done
 teacher
 home
 profile ---------------done
-students --------------doing
-students/uni
+students --------------done
+students/uni ----------doing
 request ---------------done
 how to ----------------done
 

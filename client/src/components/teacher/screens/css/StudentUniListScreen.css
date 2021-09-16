@@ -1,0 +1,60 @@
+.uniMain{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 3px #31A34A;
+}
+.uniTitle{
+    /* background-color: aqua; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+.uniCard{
+    background-color: #F9F9F9;
+    width: 50%;
+    height: 8rem;
+    display: flex;
+    padding: 1rem;
+    flex-direction: column;
+    border-radius: 10px;
+    border: solid 3px #31A34A;
+    margin-top: 1rem;
+}
+.uniName{
+    display: flex;
+    /* background-color: aqua; */
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    font-weight: bold;
+}
+.uniDeadline{
+    display: flex;
+    /* background-color: firebrick; */
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+    font-size: larger;
+    font-weight: bold;
+}
+.uniStatus{
+    display: flex;
+    /* background-color: indianred; */
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+    
+}
+.uniSave{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}

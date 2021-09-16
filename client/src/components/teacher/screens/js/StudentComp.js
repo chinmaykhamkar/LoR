@@ -3,6 +3,8 @@ import '../css/StudentComp.css'
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios';
+import Link from '@material-ui/core/Link';
+
 
 
 var config = {
@@ -38,8 +40,11 @@ const StudentComp = () => {
                }
            }
             // console.log(pending)
+            var link = `/teacher/studentunilist?semail=${d.semail}`
+            // console.log(link)
             return (
                 <div key={d._id} className="studCard">
+                    <Link href={link} style={{ color: 'black',textDecoration: 'none' }}>
                     <div className="studHead">
                         <div className='studKey'>Student Name</div>
                         <div className='studVal'>{d.name}</div>
@@ -52,6 +57,7 @@ const StudentComp = () => {
                         <div className='studKey'>Pending LoRs</div>
                         <div className='studVal'>{pending}</div>
                     </div>
+                    </Link>
                 </div>
                 
                 

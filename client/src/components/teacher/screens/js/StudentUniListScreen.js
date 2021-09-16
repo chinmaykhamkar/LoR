@@ -5,7 +5,7 @@ import ResponsiveDrawer from '../../../common/TeacherDrawer';
 const StudentsUniListScreent = () => {
     return (
         <div>
-            this is teacher studentunilist 
+            <ResponsiveDrawer name="UniList" />
         </div>
     )
 }

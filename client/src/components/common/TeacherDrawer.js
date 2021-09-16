@@ -26,6 +26,8 @@ import StudentComp from '../teacher/screens/js/StudentComp';
 import RequestComp from '../teacher/screens/js/RequestComp';
 import ProfileComp from '../teacher/screens/js/ProfileComp';
 import InstructionComp from '../teacher/screens/js/InstructionComp';
+import StudentUniComp from '../teacher/screens/js/StudentUniComp'
+import StudentUniListRoutet from '../teacher/routing/StudentUniListRoute';
 
 const drawerWidth = 240;
 var color = localStorage.getItem('teacherColor');
@@ -219,6 +221,7 @@ const ResponsiveDrawer = (props) => {
         {props.name == 'Request' && <RequestComp />}
         {props.name == 'Profile' && <ProfileComp />}
         {props.name == 'Instruction' && <InstructionComp />}
+        {props.name == 'UniList' && <StudentUniComp />}
 
       </main>
     </div>
