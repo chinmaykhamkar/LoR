@@ -58,3 +58,25 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.uniGuide{
+    display: flex;
+    height: 3rem;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+.done{
+    background-color: #8BE78B;
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+}
+.pending{
+    background-color: #FFFDAF;
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+    margin-left: 2rem;
+}

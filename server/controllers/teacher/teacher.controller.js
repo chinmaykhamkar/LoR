@@ -36,6 +36,22 @@ exports.studentsController = async (req,res,next) => {
         }))
 }
 
+//display student uni list 
+exports.studentUniListController = async (req, res, next) => {
+    Teacher.find({"email":req.params.email})
+        .then(teacher => {
+            const sobj = teacher[0].students.findIndex((f => f.semail == req.params.semail));
+            console.log(teacher[0]["students"][sobj]);
+            res.status(200).json({
+                sucess: true,
+                message: 'flag done',
+                data: teacher[0]["students"][sobj]['university']
+            }) 
+        })
+        .catch(err => res.status(400).json('errror ' + err));
+        
+};
+
 
 
 
@@ -70,12 +86,6 @@ exports.updateProfileController = async (req, res, next) => {
         .catch(err => res.status(400).json('error ' + err));
 
 }
-exports.studentUniListController = async (req, res, next) => {
-    res.status(200).json({
-        sucess: true,
-        data: "studentUniListController route"
-    });
-};
 
 
 
@@ -171,12 +181,7 @@ exports.rejectRequestController = async (req, res, next) => {
 
 
 
-exports.studentUniListController = async (req, res, next) => {
-    res.status(200).json({
-        sucess: true,
-        data: "studentUniListController route"
-    });
-};
+
 
 
 

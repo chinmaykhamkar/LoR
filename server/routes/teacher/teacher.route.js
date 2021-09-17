@@ -17,7 +17,7 @@ router.route('/home').get(protect,homeController);
 router.route('/request/:email').get(protect,requestController);
 router.route('/students/:email').get(protect,studentsController);
 router.route('/profile/:email').get(protect,profileController);
-router.route('/student/:email/uniList').get(protect,studentUniListController);
+router.route('/student/uniList/:email/:semail').get(protect,studentUniListController);
 
 
 
