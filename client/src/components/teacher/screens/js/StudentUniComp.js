@@ -16,6 +16,7 @@ var temail = localStorage.getItem('email');
 var urlString = window.location.href;
 var url = new URL(urlString);
 var semail = url.searchParams.get("semail");
+
 const StudentUniComp = () => {
 
     const [copied, setCopied] = useState("");
@@ -42,6 +43,8 @@ const StudentUniComp = () => {
     }
 
 
+
+  
     const uniList = uniData.map((d) => {
         const date = new Date(`${d.deadline}`);
         // console.log(date);
@@ -49,16 +52,18 @@ const StudentUniComp = () => {
         const month = date.getMonth() + 1;
         const day = date.getDate();
         const finalDeadline = day + "/" + month + "/" + year;
-        const bg = (d.status? '#8BE78B':'#FFFDAF')
-        // console.log(bg)
+        const bg = (d.status ? '#8BE78B' : '#FFFDAF')        
+        
         return (
-            <div key={d._id} style={{backgroundColor:`${bg}`}} className="uniCard">
+            <div key={d._id} style={{ backgroundColor: `${bg}` }} className="uniCard">
                 <div style={{ display: 'flex' }}>
                     <div className="uniName">
                         {d.name}
+
                     </div>
                     <div className="uniDeadline">
                         {finalDeadline}
+
                     </div>
                     <div className="uniStatus">
                         <FormControl fullWidth>
@@ -67,7 +72,7 @@ const StudentUniComp = () => {
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 label="Age"
-                                
+
                             >
                                 <MenuItem value={10}>Pending</MenuItem>
                                 <MenuItem value={20}>Done</MenuItem>
@@ -126,7 +131,7 @@ const StudentUniComp = () => {
                 </div>
                 <div>Pending</div>
             </div>
-            {uniList}            
+            {uniList}
         </div>
     )
 }
