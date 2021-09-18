@@ -17,7 +17,10 @@ const InstructionComp = () => {
                     3. Ask for the Email ID used by your teacher on this app and add that Email in the <Link href='/student/teachers' style={{ color: '#DA2426' }}>Teachers</Link> section to link that teacher with your account.
                 </Typography>
                 <Typography style={{fontWeight:'bold'}}>
-                    Please do the above step before doing step 5.
+                    Please do the above step before doing step 5. Add all teachers before adding universities.
+                </Typography>
+                <Typography style={{fontWeight:'bold'}}>
+                    Teachers added after adding universites won't be able to see your universities.
                 </Typography>
                 <Typography>
                     4. Tell your teacher to accept your request.

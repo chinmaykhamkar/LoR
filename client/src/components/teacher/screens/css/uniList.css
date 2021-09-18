@@ -1,0 +1,11 @@
+.tableItem {
+    display: flex;
+    height: 20%;
+    /* background-color: blue; */
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 0.5rem;
+    width: 60%;
+    font-weight: bold;
+  }
