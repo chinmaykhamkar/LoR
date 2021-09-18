@@ -37,20 +37,19 @@ exports.studentsController = async (req, res, next) => {
 }
 
 //display student uni list teacher
+
 exports.studentUniListController = async (req, res, next) => {
     Teacher.findOne({ "email": req.params.email })
         .then(teacher => {
-            // const sobj = teacher[0].students.findIndex((f => f.semail == req.params.semail));
+            
             const sobj = teacher.students.findIndex((f => f.semail == req.params.semail));
-
-            // console.log(teacher[0]["students"][sobj]);
             console.log(teacher.students[sobj]);
-
+            
             res.status(200).json({
                 sucess: true,
                 message: 'flag done',
-                // data: teacher[0]["students"][sobj]['university']
-                data: teacher.students[sobj].university
+                data: teacher.students[sobj], 
+                
 
             })
         })
@@ -58,6 +57,15 @@ exports.studentUniListController = async (req, res, next) => {
 
 };
 
+
+exports.studentLorController = async (req,res,next) => {
+    Student.find({ "email": req.params.email })
+        .then(student => res.status(200).json({
+            success: true,
+            data: student[0].lorLink
+        }))
+        .catch(err => res.status(400).json('Error ' + err));
+}
 
 
 // update uni status 
