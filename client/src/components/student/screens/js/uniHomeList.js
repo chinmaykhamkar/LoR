@@ -1,9 +1,9 @@
 import React from 'react';
-import '../css/uniList.css';
+import '../css/uniHomeList.css';
 
-const UniList = (props) => {
+const UniHomeList = (props) => {
     const arr = props.count;
-    console.log(arr);
+    // console.log(arr);
 
     const list = arr.map((d) => {
         const bg = (d.status ? '#8BE78B' : '#FFFDAF')
@@ -31,4 +31,4 @@ const UniList = (props) => {
     )
 }
 
-export default UniList
+export default UniHomeList

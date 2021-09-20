@@ -7,7 +7,7 @@ import '../css/HomeComp.css'
 import UniList from './uniList';
 
 
-var list = [];
+let list = [];
 const HomeComp = () => {
     var config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('authTokent')}` }
@@ -25,11 +25,15 @@ const HomeComp = () => {
             const allData = await axios.get(`http://localhost:5000/teacher/profile/${temail}`, config);
             console.log(allData.data.data);
             // setList(allData.data.data[0].students);
-            for (let i = 0; i < allData.data.data[0].students.length; i++) {
-                list.push(allData.data.data[0].students[i]);
-            }
-            console.log(list);
-            setLoading(false);
+            setTimeout(() => {
+                list = [];
+                for (let i = 0; i < allData.data.data[0].students.length; i++) {
+                    list.push(allData.data.data[0].students[i]);
+                }
+                console.log(list);
+                setLoading(false);
+            }, 2500);
+
 
         } catch (err) {
             console.log(err);
@@ -51,14 +55,14 @@ const HomeComp = () => {
             uniData.push(obj);
         }
         // console.log(uniData);
-        if(d.status){
+        if (d.status) {
 
             return (
-                <div key={d._id} className="tableContent">
+                <div className="tableContent">
                     <div className="tableHead">
                         {d.name}
                     </div>
-                    <UniList count={uniData}  />
+                    <UniList count={uniData} />
                 </div>
             )
         }

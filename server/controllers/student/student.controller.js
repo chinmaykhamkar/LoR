@@ -3,11 +3,38 @@ const Student = require("../../models/student/Student");
 const Teacher = require("../../models/teacher/Teacher")
 const { Error } = require("mongoose");
 
+
+//get data for home page
+let unis = [];
+var final = [];
+var temp = []
 exports.homeController = async (req, res, next) => {
-    res.status(200).json({
-        sucess: true,
-        data: "Home route"
-    });
+    Student.findOne({ "email": req.params.email })
+        .then(student => {
+            final = [];
+            for (let i = 0; i < student['teachers'].length; i++) {
+                Teacher.findOne({ "email": student['teachers'][i].temail })
+                    .then(teacher => {
+                        const sobj = teacher.students.findIndex(d => d.semail == req.params.email);
+                        // final = [];
+                        final.push(teacher.students[sobj]);
+                        console.log(final);
+
+                    })
+                    .catch(err => console.log('error inside ' + err));
+
+
+            }
+            console.log(final);
+            res.status(200).json({
+                sucess: true,
+                message: 'flag done',
+                data: student,
+
+            })
+
+        })
+        .catch(err => console.log('error outside inside ' + err))
 };
 
 exports.teachersController = async (req, res, next) => {
@@ -29,6 +56,26 @@ exports.teacherListController = async (req, res, next) => {
         .catch(err => res.status(400).json('Error ' + err));
 }
 
+
+
+//home data 
+exports.homeDataController = async (req, res, next) => {
+    Student.findOne({ "email": req.params.email })
+        .then(student => {
+            Teacher.findOne({ "email": req.params.temail })
+                .then(teacher => {
+                    const sobj = teacher.students.findIndex(f => f.semail == req.params.email);
+                    console.log(teacher.students[sobj]);
+                    res.status(200).json({
+                        success: true,
+                        data: teacher.students[sobj]
+                    })
+                })
+                .catch(err => res.status(400).json('errror ' + err));
+           
+        })
+        .catch(err => res.status(400).json('errror outside ' + err));
+}
 
 
 
