@@ -127,7 +127,7 @@ const UniversityComp = () => {
         )
     }
     return (
-        <div className="uniMain">
+        <div className="uniMains">
             <div className="uniTable">
                 <div className="uniHead">
                     <div className="uniNameT">

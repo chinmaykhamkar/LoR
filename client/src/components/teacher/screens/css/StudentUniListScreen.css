@@ -6,6 +6,7 @@
     background-color: white;
     border-radius: 10px;
     border: solid 3px #31A34A;
+    align-items: center;
 }
 .uniTitle{
     /* background-color: aqua; */
