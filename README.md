@@ -40,9 +40,13 @@ Few screenshots below
 
 <p>
   <img src="./screenshots/ss1.PNG">
+  <br>
   <img src="./screenshots/ss2.PNG" >
+    <br>
   <img src="./screenshots/ss3.PNG">
+    <br>
   <img src="./screenshots/ss4.PNG">
+    <br>
   <img src="./screenshots/ss5.PNG">
 
 </p>
