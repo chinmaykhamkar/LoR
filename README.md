@@ -2,7 +2,7 @@
 
 URL => https://lor-manager.vercel.app/
 
-tech stack used - 
+tech stack used -
 
 Frontend - react js
 
@@ -30,14 +30,19 @@ EMAIL_USERNAME=apikey
 EMAIL_PASSWORD={sendGrid password}
 EMAIL_FROM={sender email set on sendgrid}
 ```
+
 Read SendGrid docs for better understanding of last 4 env variables.
 
 This project was made with the intention to help teachers and students to manage and organize the LoRs required during the application process for MS.
 To report ant Bugs, feature request or any feedback/ improvment, create an issue with a description ( screenshot if aplicable ).
 
 Few screenshots below
-![ss1](/screenshots/ss1.png)
 
+<p>
+  <img src="./screenshots/ss1.PNG">
+  <img src="./screenshots/ss2.PNG" >
+  <img src="./screenshots/ss3.PNG">
+  <img src="./screenshots/ss4.PNG">
+  <img src="./screenshots/ss5.PNG">
 
-
-
+</p>
