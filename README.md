@@ -36,7 +36,7 @@ This project was made with the intention to help teachers and students to manage
 To report ant Bugs, feature request or any feedback/ improvment, create an issue with a description ( screenshot if aplicable ).
 
 Few screenshots below
-
+![ss1](/screenshots/ss1.png)
 
 
 
