@@ -36,6 +36,8 @@ Read SendGrid docs for better understanding of last 4 env variables.
 This project was made with the intention to help teachers and students to manage and organize the LoRs required during the application process for MS.
 To report ant Bugs, feature request or any feedback/ improvment, create an issue with a description ( screenshot if aplicable ).
 
+Note - Current version of web app is not responsive so use it on laptop or PC. The responsiveness of the app is being worked upon.
+
 Few screenshots below
 
 <p>
