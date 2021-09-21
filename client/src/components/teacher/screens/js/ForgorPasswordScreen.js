@@ -61,7 +61,7 @@ const ForgorPasswordScreent = ({ history }) => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/teacher/auth/forgotpassword",
+        "https://lor-manager.herokuapp.com/teacher/auth/forgotpassword",
         { email },
         config
       );

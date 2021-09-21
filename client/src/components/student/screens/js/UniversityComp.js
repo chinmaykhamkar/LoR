@@ -33,7 +33,7 @@ const UniversityComp = () => {
     const getUni = async () => {
         try {
             var count = 0;
-            const uniData = await axios.get(`http://localhost:5000/student/university/${email}`, config);
+            const uniData = await axios.get(`https://lor-manager.herokuapp.com/student/university/${email}`, config);
             console.log(uniData.data.data);
             setUniversity(uniData.data.data);
             for(let i=0;i<uniData.data.data.length;i++){
@@ -63,7 +63,7 @@ const UniversityComp = () => {
             const deadline = date.toISOString();
             const short = shortForm.toUpperCase();
             const addUni = await axios.post(
-                `http://localhost:5000/student/addUniversity/${email}`,
+                `https://lor-manager.herokuapp.com/student/addUniversity/${email}`,
                 {name,deadline,short},
                 config
             );

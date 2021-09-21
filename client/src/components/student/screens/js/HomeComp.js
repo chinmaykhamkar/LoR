@@ -26,11 +26,11 @@ const HomeComp = () => {
 
     const studentData = async () => {
         try {
-            const sdata = await axios.get(`http://localhost:5000/student/profile/${semail}`, config);
+            const sdata = await axios.get(`https://lor-manager.herokuapp.com/student/profile/${semail}`, config);
             // console.log(sdata.data.data);
             setTimeout(() => {
                 for (let i = 0; i < sdata.data.data[0].teachers.length; i++) {
-                    teachers.push('http://localhost:5000/student/homeData/' + semail + '/' + sdata.data.data[0].teachers[i].temail);
+                    teachers.push('https://lor-manager.herokuapp.com/student/homeData/' + semail + '/' + sdata.data.data[0].teachers[i].temail);
                     teacherList.push(sdata.data.data[0].teachers[i]);
                 }
                 // console.log(teacherList);

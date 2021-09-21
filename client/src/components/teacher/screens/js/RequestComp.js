@@ -26,7 +26,7 @@ const RequestComp = () => {
     const getData = async () => {
         try {
             var count = 0;
-            const requestData = await axios.get(`http://localhost:5000/teacher/request/${temail}`, config);
+            const requestData = await axios.get(`https://lor-manager.herokuapp.com/teacher/request/${temail}`, config);
             console.log(requestData.data.data);
             setRequest(requestData.data.data);
             for(let i=0;i<requestData.data.data.length;i++){
@@ -53,7 +53,7 @@ const RequestComp = () => {
     const acceptHandler = async (semail) => {
         try {
             const accepcted = await axios.post(
-                `http://localhost:5000/teacher/acceptRequest`,
+                `https://lor-manager.herokuapp.com/teacher/acceptRequest`,
                 { semail, temail },
                 config
             );
@@ -70,7 +70,7 @@ const RequestComp = () => {
     const rejectHandler = async (semail) => {
         try {
             const rejected = await axios.post(
-                `http://localhost:5000/teacher/rejectRequest`,
+                `https://lor-manager.herokuapp.com/teacher/rejectRequest`,
                 { semail, temail },
                 config
             );

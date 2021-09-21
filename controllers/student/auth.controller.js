@@ -53,7 +53,8 @@ exports.forgotPassword = async (req, res, next) => {
 
         const resetToken = student.getResetPasswordToken();
         await student.save();
-        const resetUrl = `http://localhost:3000/student/passwordreset/${resetToken}`;
+        // http://localhost:3000
+        const resetUrl = `https://lor-manager.vercel.app/student/passwordreset/${resetToken}`;
         // HTML Message
         const message = `
         <h1>You have requested a password reset</h1>

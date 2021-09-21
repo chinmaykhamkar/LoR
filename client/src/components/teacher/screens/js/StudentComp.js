@@ -20,7 +20,7 @@ const StudentComp = () => {
     }, []);
     const getStudents = async () => {
         try {
-            const studentData = await axios.get(`http://localhost:5000/teacher/students/${temail}`, config);
+            const studentData = await axios.get(`https://lor-manager.herokuapp.com/teacher/students/${temail}`, config);
             console.log(studentData.data.data);
             setLoading(false);
             setStudents(studentData.data.data);

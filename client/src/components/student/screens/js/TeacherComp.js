@@ -36,7 +36,7 @@ const TeacherComp = () => {
 
     const getTeacherData = async () => {
         try {
-            const teacherData = await axios.get(`http://localhost:5000/student/getTeacherList/${semail}`, config);
+            const teacherData = await axios.get(`https://lor-manager.herokuapp.com/student/getTeacherList/${semail}`, config);
             console.log(teacherData.data.data);
             setTeacher(teacherData.data.data);
             setLoading(false);
@@ -56,7 +56,7 @@ const TeacherComp = () => {
             return;
         }
         try {
-            const addTeacher = await axios.post('http://localhost:5000/student/addTeacher',
+            const addTeacher = await axios.post('https://lor-manager.herokuapp.com/student/addTeacher',
                 { semail, email, name },
                 config
             );

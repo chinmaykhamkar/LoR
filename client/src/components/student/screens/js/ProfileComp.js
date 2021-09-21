@@ -34,7 +34,7 @@ const ProfileComp = () => {
     const getData = async () => {        
 
         try {
-            const allData = await axios.get(`http://localhost:5000/student/profile/${email}`, config);
+            const allData = await axios.get(`https://lor-manager.herokuapp.com/student/profile/${email}`, config);
             storeData = allData.data.data;
             // setData(storeData);
             setUsername(storeData[0].username);
@@ -59,7 +59,7 @@ const ProfileComp = () => {
 
         try{
             const updateData = await axios.post(
-                `http://localhost:5000/student/updateProfile/${email}`,
+                `https://lor-manager.herokuapp.com/student/updateProfile/${email}`,
                 {username,college,lor},
                 config
             );

@@ -60,7 +60,7 @@ const LoginScreen = ({ history }) => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/student/auth/login",
+        "https://lor-manager.herokuapp.com/student/auth/login",
         { email, password },
         config
       );

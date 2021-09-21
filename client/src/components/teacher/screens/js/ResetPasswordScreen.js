@@ -70,7 +70,7 @@ const ResetPasswordScreent = ({ history, match }) => {
 
         try {
             const { data } = await axios.put(
-                `http://localhost:5000/teacher/auth/passwordreset/${match.params.resetToken}`,
+                `https://lor-manager.herokuapp.com/teacher/auth/passwordreset/${match.params.resetToken}`,
                 {
                     password,
                 },

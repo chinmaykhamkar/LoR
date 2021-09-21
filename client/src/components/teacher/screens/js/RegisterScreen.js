@@ -74,7 +74,7 @@ const RegisterScreent = ({ history }) => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/teacher/auth/register",
+        "https://lor-manager.herokuapp.com/teacher/auth/register",
         {
           username,
           email,

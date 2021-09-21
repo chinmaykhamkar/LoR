@@ -22,7 +22,7 @@ const HomeComp = () => {
 
     const teacherData = async () => {
         try {
-            const allData = await axios.get(`http://localhost:5000/teacher/profile/${temail}`, config);
+            const allData = await axios.get(`https://lor-manager.herokuapp.com/teacher/profile/${temail}`, config);
             console.log(allData.data.data);
             // setList(allData.data.data[0].students);
             setTimeout(() => {

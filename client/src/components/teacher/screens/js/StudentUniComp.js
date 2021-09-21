@@ -32,13 +32,13 @@ const StudentUniComp = () => {
     const getStudentsUni = async () => {
         try {
             // console.log(semail)
-            const studentUniData = await axios.get(`http://localhost:5000/teacher/student/uniList/${temail}/${semail}`, config);
+            const studentUniData = await axios.get(`https://lor-manager.herokuapp.com/teacher/student/uniList/${temail}/${semail}`, config);
             // console.log(studentUniData.data.lorLink);
             // setLor(studentUniData.data.lorLink);
             setLoading(false);
             setUniData(studentUniData.data.data.university);
             try{
-                const studentLor = await axios.get(`http://localhost:5000/teacher/student/lorLink/${semail}`,config);
+                const studentLor = await axios.get(`https://lor-manager.herokuapp.com/teacher/student/lorLink/${semail}`,config);
                 // console.log(studentLor.data.data);
                 setLor(studentLor.data.data);
             }catch(err){
@@ -56,7 +56,7 @@ const StudentUniComp = () => {
     const updateHandler = async (id) => {
         try {
             const updateUni = await axios.post(
-                `http://localhost:5000/teacher/uniListUpdate/${temail}`,
+                `https://lor-manager.herokuapp.com/teacher/uniListUpdate/${temail}`,
                 { semail, id },
                 config
             );
