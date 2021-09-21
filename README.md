@@ -14,7 +14,7 @@ Hosting - Heroku (backend) and Vercel (frontend)
 
 project setup
 
--> Root folder conist of node project and client folder consist of react project.
+-> Root folder consist of node project and client folder consist of react project.
 
 -> Run npm install in root and client folder respectively
 
@@ -31,5 +31,13 @@ EMAIL_PASSWORD={sendGrid password}
 EMAIL_FROM={sender email set on sendgrid}
 ```
 Read SendGrid docs for better understanding of last 4 env variables.
+
+This project was made with the intention to help teachers and students to manage and organize the LoRs required during the application process for MS.
+To report ant Bugs, feature request or any feedback/ improvment, create an issue with a description ( screenshot if aplicable ).
+
+Few screenshots below
+
+
+
 
 
