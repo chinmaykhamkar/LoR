@@ -140,18 +140,22 @@ const ResponsiveDrawer = (props) => {
           <ListItemText primary="Instructions" />
         </ListItem>
         </Link>
+        <Link href='https://linktr.ee/chinmaykhamkar' style={{color:'black'}} target="_blank">
         <ListItem className={(props.name) == 'Contact us' ? classes.active : ""} button>
           <ListItemIcon>
             <FontAwesomeIcon icon={faInbox} size={"2x"} />
           </ListItemIcon>
           <ListItemText primary="Contact us" />
         </ListItem>
+        </Link>
+        <Link href='https://www.buymeacoffee.com/chinmaykhamkar' style={{color:'black'}} target="_blank">
         <ListItem className={(props.name) == 'Support us' ? classes.active : ""} button>
           <ListItemIcon>
             <FontAwesomeIcon icon={faHandHoldingUsd} size={"2x"} />
           </ListItemIcon>
           <ListItemText primary="Support us" />
         </ListItem>
+        </Link>
         <ListItem onClick={logoutHandler}  className={(props.name) == 'Logout' ? classes.active : ""} button>
           <ListItemIcon>
             <FontAwesomeIcon icon={faSignOutAlt} size={"2x"} />
