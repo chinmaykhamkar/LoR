@@ -14,7 +14,7 @@ Hosting - Heroku (backend) and Vercel (frontend)
 
 project setup
 
--> Root folder cosists of node project and client folder consist of react project.
+-> Root folder conist of node project and client folder consist of react project.
 
 -> Run npm install in root and client folder respectively
 
