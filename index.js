@@ -7,6 +7,7 @@ const studentRoute = require('./routes/student/student.route');
 const studentAuthRoute = require('./routes/student/auth.route');
 const teacherRoute = require('./routes/teacher/teacher.route');
 const teacherAuthRoute = require('./routes/teacher/auth.route');
+const testRoute = require('./routes/test');
 const errorHandler = require('./middleware/error');
 require('dotenv').config();
 
@@ -30,9 +31,13 @@ mongoose.set('useFindAndModify', false);
 app.use('/student',studentRoute);
 app.use('/student/auth',studentAuthRoute);
 
+
 //teacher routes
 app.use('/teacher',teacherRoute);
 app.use('/teacher/auth',teacherAuthRoute);
+
+//test route
+app.use('/',testRoute);
 
 // error handling 
 app.use(errorHandler);
