@@ -1,22 +1,88 @@
-.profileMains{
+.profileMains {
+  display: flex;
+  flex-direction: column;
+  /* background-color: white; */
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.profileCards {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  height: 20rem;
+  width: 30rem;
+  border-radius: 10px;
+  border: solid 3px #ffbcbc;
+}
+.dialogBox{
+    width: 30rem;
+}
+.profileDivs {
+  display: flex;
+  flex-direction: column;
+  /* background-color:#FFBCBC; */
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  /* color: white; */
+}
+
+.profileTitles {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 2rem;
+  /* background-color: blue; */
+  margin-top: 1rem;
+  width: 100%;
+  height: 15%;
+}
+.proifleKeys {
+}
+.profileVals {
+  display: flex;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.profileEdits {
+  display: flex;
+  /* background-color: antiquewhite; */
+  margin-top: 0.5rem;
+  width: 30rem;
+  height: 3rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+.editBtns {
+  height: 80%;
+  width: 5rem;
+  background-color: white;
+}
+@media only screen and (max-width: 600px) {
+  .profileMains {
     display: flex;
     flex-direction: column;
     /* background-color: white; */
     width: 100%;
-    height: 100%;
+    height: auto;
     justify-content: center;
     align-items: center;
-}
-.profileCards{
+  }
+  .profileCards {
     display: flex;
     flex-direction: row;
     background-color: white;
     height: 20rem;
-    width: 30rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
     border-radius: 10px;
-    border: solid 3px  #FFBCBC;
-}
-.profileDivs{
+    border: solid 3px #ffbcbc;
+  }
+  .profileDivs {
     display: flex;
     flex-direction: column;
     /* background-color:#FFBCBC; */
@@ -24,54 +90,41 @@
     width: 100%;
     height: 100%;
     /* color: white; */
-}
+  }
 
-.profileTitles{
+  .profileTitles {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left: 2rem;
+    padding-left: 1rem;
     /* background-color: blue; */
     margin-top: 1rem;
     width: 100%;
     height: 15%;
-}
-.proifleKeys{
-
-}
-.profileVals{
+  }
+  .proifleKeys {
+  }
+  .profileVals {
     display: flex;
     font-weight: bold;
-    font-size: 1.2rem;    
-}
+    font-size: 1.2rem;
+  }
 
-
-
-.profileEdits{
+  .profileEdits {
     display: flex;
     /* background-color: antiquewhite; */
     margin-top: 0.5rem;
-    width: 30rem;
+    width: 100%;
     height: 3rem;
     justify-content: flex-end;
     align-items: center;
-}
-.editBtns{
+  }
+  .editBtns {
     height: 80%;
     width: 5rem;
     background-color: white;
-}
-@media only screen and (max-width: 600px) {
-    .profileMains{
-        width: 100%;
-    }
-    .profileCards{
-        width: 20rem;
-    }
-    .profileEdits{
-
-    }
-    .editBtn{
-
-    }
   }
+  .dialogBox{
+    width: 20rem;
+}
+}

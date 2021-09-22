@@ -1,47 +1,157 @@
-.mainDivTeach{
+.mainDivTeach {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border: solid 3px #ffbcbc;
+  border-radius: 10px;
+}
+
+.mainTop {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 40%;
+  /* background-color: antiquewhite; */
+  padding: 1.5rem;
+}
+.topTitle {
+  display: flex;
+  /* background-color: red; */
+  font-size: large;
+  font-weight: bold;
+  margin-left: 10px;
+  height: min-content;
+}
+.topField {
+  display: flex;
+  height: 40%;
+  margin-top: 15px;
+  padding: 5px;
+  align-items: center;
+}
+.topBtn {
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+  margin-left: 10px;
+  margin-top: 10px;
+  /* height: 20 */
+}
+
+.mainBottom {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 60%;
+  /* background-color: rebeccapurple; */
+  margin-top: 2rem;
+  padding: 1.5rem;
+}
+.requestBottom {
+  display: flex;
+  flex-direction: column;
+  /* background-color: antiquewhite; */
+  width: 100%;
+  height: auto;
+}
+.reqList {
+  display: flex;
+  flex-direction: column;
+  /* background-color: blueviolet; */
+  margin-left: 10px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.reqTeacher {
+  display: flex;
+  background-color: #ffbcbc;
+  border: solid 2px #da2426;
+  height: 2rem;
+  width: 25%;
+  justify-content: flex-start;
+  padding-left: 5px;
+  align-items: center;
+  /* font-weight: bold;    */
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+.accBotton {
+  display: flex;
+  flex-direction: column;
+  /* background-color: gold; */
+  width: 100%;
+  height: auto;
+}
+
+.accList {
+  display: flex;
+  flex-direction: column;
+  /* background-color: blueviolet; */
+  margin-left: 10px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.accTeacher {
+  display: flex;
+  background-color: #d5e8d4;
+  border: solid 2px #82b366;
+  height: 2rem;
+  width: 25%;
+  justify-content: flex-start;
+  padding-left: 5px;
+  align-items: center;
+  /* font-weight: bold;    */
+  margin-bottom: 5px;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+  .mainDivTeach {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
     background-color: white;
-    border: solid 3px #FFBCBC;
+    border: solid 3px #ffbcbc;
     border-radius: 10px;
-}
+  }
 
-.mainTop{
+  .mainTop {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 40%;
     /* background-color: antiquewhite; */
     padding: 1.5rem;
-
-}
-.topTitle{
+  }
+  .topTitle {
     display: flex;
     /* background-color: red; */
     font-size: large;
     font-weight: bold;
     margin-left: 10px;
     height: min-content;
-}
-.topField{
+  }
+  .topField {
     display: flex;
     height: 40%;
     margin-top: 15px;
     padding: 5px;
     align-items: center;
-}
-.topBtn{
+  }
+  .topBtn {
     display: flex;
     justify-content: flex-start;
     width: 50%;
     margin-left: 10px;
     margin-top: 10px;
     /* height: 20 */
-}
+  }
 
-.mainBottom{
+  .mainBottom {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -49,65 +159,63 @@
     /* background-color: rebeccapurple; */
     margin-top: 2rem;
     padding: 1.5rem;
-}
-.requestBottom{
+  }
+  .requestBottom {
     display: flex;
     flex-direction: column;
     /* background-color: antiquewhite; */
     width: 100%;
     height: auto;
-}
-.reqList{
+  }
+  .reqList {
     display: flex;
     flex-direction: column;
     /* background-color: blueviolet; */
     margin-left: 10px;
     padding-top: 1rem;
     padding-bottom: 1rem;
-}
-.reqTeacher{
+  }
+  .reqTeacher {
     display: flex;
-    background-color: #FFBCBC;
-    border: solid 2px #DA2426;
+    background-color: #ffbcbc;
+    border: solid 2px #da2426;
     height: 2rem;
-    width: 25%;
+    width: auto !important;
     justify-content: flex-start;
     padding-left: 5px;
     align-items: center;
     /* font-weight: bold;    */
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
     border-radius: 5px;
-}
+  }
 
-
-
-.accBotton{
+  .accBotton {
     display: flex;
     flex-direction: column;
     /* background-color: gold; */
     width: 100%;
     height: auto;
-}
+  }
 
-.accList{
+  .accList {
     display: flex;
     flex-direction: column;
     /* background-color: blueviolet; */
     margin-left: 10px;
     padding-top: 1rem;
     padding-bottom: 1rem;
-}
-.accTeacher{
+  }
+  .accTeacher {
     display: flex;
-    background-color: #D5E8D4;
-    border: solid 2px #82B366;
+    background-color: #d5e8d4;
+    border: solid 2px #82b366;
     height: 2rem;
-    width: 25%;
+    width: auto !important;
     justify-content: flex-start;
     padding-left: 5px;
     align-items: center;
     /* font-weight: bold;    */
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
     border-radius: 5px;
-
+  }
 }

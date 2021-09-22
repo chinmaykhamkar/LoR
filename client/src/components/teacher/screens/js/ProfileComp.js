@@ -117,7 +117,7 @@ const ProfileComp = () => {
                     </Button>
                     <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title">Edit</DialogTitle>
-                        <DialogContent style={{ width: '30rem' }}>
+                        <DialogContent className='dialogBoxt'>
 
 
                             <TextField

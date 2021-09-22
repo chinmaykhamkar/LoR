@@ -15,8 +15,11 @@ const useStyles = makeStyles((theme) => ({
         '& > *': {
             margin: theme.spacing(1),
             width: '50ch',
+            ['@media (max-width:600px)']: { // eslint-disable-line no-useless-computed-key
+                width: '30ch'
+              }
         },
-    },
+    },    
 }));
 var config = {
     headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
