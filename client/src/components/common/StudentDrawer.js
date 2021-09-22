@@ -16,6 +16,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -64,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
-    
+
   },
   active: {
     backgroundColor: "#FFBCBC",
@@ -89,7 +90,7 @@ const ResponsiveDrawer = (props) => {
     localStorage.removeItem('email');
     localStorage.removeItem('sname');
     history.push('/student/login');
-    
+
   }
 
   const drawer = (
@@ -132,31 +133,31 @@ const ResponsiveDrawer = (props) => {
       </List>
       <Divider />
       <List>
-        <Link href='/student/instruction' style={{color:'black'}}>
-        <ListItem className={(props.name) == 'Instruction' ? classes.active : ""} button>
-          <ListItemIcon>
-            <FontAwesomeIcon icon={faQuestionCircle} size={"2x"} />
-          </ListItemIcon>
-          <ListItemText primary="Instructions" />
-        </ListItem>
+        <Link href='/student/instruction' style={{ color: 'black' }}>
+          <ListItem className={(props.name) == 'Instruction' ? classes.active : ""} button>
+            <ListItemIcon>
+              <FontAwesomeIcon icon={faQuestionCircle} size={"2x"} />
+            </ListItemIcon>
+            <ListItemText primary="Instructions" />
+          </ListItem>
         </Link>
-        <Link href='https://linktr.ee/chinmaykhamkar' style={{color:'black'}} target="_blank">
-        <ListItem className={(props.name) == 'Contact us' ? classes.active : ""} button>
-          <ListItemIcon>
-            <FontAwesomeIcon icon={faInbox} size={"2x"} />
-          </ListItemIcon>
-          <ListItemText primary="Contact us" />
-        </ListItem>
+        <Link href='https://linktr.ee/chinmaykhamkar' style={{ color: 'black' }} target="_blank">
+          <ListItem className={(props.name) == 'Contact us' ? classes.active : ""} button>
+            <ListItemIcon>
+              <FontAwesomeIcon icon={faInbox} size={"2x"} />
+            </ListItemIcon>
+            <ListItemText primary="Contact us" />
+          </ListItem>
         </Link>
-        <Link href='https://www.buymeacoffee.com/chinmaykhamkar' style={{color:'black'}} target="_blank">
-        <ListItem className={(props.name) == 'Support us' ? classes.active : ""} button>
-          <ListItemIcon>
-            <FontAwesomeIcon icon={faHandHoldingUsd} size={"2x"} />
-          </ListItemIcon>
-          <ListItemText primary="Support us" />
-        </ListItem>
+        <Link href='https://www.buymeacoffee.com/chinmaykhamkar' style={{ color: 'black' }} target="_blank">
+          <ListItem className={(props.name) == 'Support us' ? classes.active : ""} button>
+            <ListItemIcon>
+              <FontAwesomeIcon icon={faHandHoldingUsd} size={"2x"} />
+            </ListItemIcon>
+            <ListItemText primary="Support us" />
+          </ListItem>
         </Link>
-        <ListItem onClick={logoutHandler}  className={(props.name) == 'Logout' ? classes.active : ""} button>
+        <ListItem onClick={logoutHandler} className={(props.name) == 'Logout' ? classes.active : ""} button>
           <ListItemIcon>
             <FontAwesomeIcon icon={faSignOutAlt} size={"2x"} />
           </ListItemIcon>
@@ -180,7 +181,9 @@ const ResponsiveDrawer = (props) => {
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >
-            <MenuIcon />
+            {props.name == 'Home' ? <Link href="/student/profile" style={{ color: 'white' }}  >
+              <AccountCircleIcon style={{display:'flex',justifyContent:'center',alignItems:'center'}} />
+            </Link> : <MenuIcon />}
           </IconButton>
           <Typography variant="h6" noWrap>
             {props.name}
@@ -200,7 +203,7 @@ const ResponsiveDrawer = (props) => {
               paper: classes.drawerPaper,
             }}
             ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
+              // keepMounted: true, // Better open performance on mobile.
             }}
           >
             {drawer}

@@ -16,7 +16,7 @@ const MainScreen = () => {
                 <PublicNav />                
             </div>
 
-            <div className="mainDiv">
+            <div className="mainDivm">
                 <div className="mainText">
                     Select user type:
                 </div>
