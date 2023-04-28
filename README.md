@@ -2,6 +2,12 @@
 
 URL => https://lor-manager.vercel.app/
 
+
+A small preview.
+
+https://user-images.githubusercontent.com/37527597/235263152-1250608d-da4b-4d32-88c2-aff6d222d912.mp4
+
+
 tech stack used -
 
 Frontend - react js
